@@ -3,7 +3,7 @@ import { Container } from "../ui/Container";
 
 const MAIN_LINKS = [
   { href: "/", label: "الرئيسية" },
-  { href: "/collections", label: "المجموعات" },
+  { href: "/collections", label: "علاماتنا" },
   { href: "/products", label: "المنتجات" },
 ];
 

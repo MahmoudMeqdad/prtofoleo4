@@ -56,6 +56,7 @@ export const ar = {
       name: "استوديو الإبداع",
       eyebrow: "المجموعة 02",
       cta: "اكتشف المزيد",
+      viewRange: "عرض المجموعة",
     },
     "outdoor-fun": {
       name: "مرح في الهواء الطلق",
@@ -79,7 +80,7 @@ export const ar = {
     },
   },
   footer: {
-    heading: "تعال اعمل معنا.",
+    heading: "اعمل معنا.",
     careers: "الوظائف",
     quickLinks: "روابط سريعة",
     home: "الرئيسية",
@@ -91,8 +92,10 @@ export const ar = {
     contact: "تواصل",
     patents: "براءات الاختراع",
     followUs: "تابعنا",
+    socialComingSoon: "ستُربط حسابات التواصل الرسمية عند جاهزيتها.",
     socialHandle: "@lifeatiplay",
-    linkedIn: "LinkedIn",
+    linkedIn: "Linked.In",
+    linkedInIcon: "LinkedIn",
     tiktok: "TikTok",
     policies: "السياسات",
     termsOfUse: "شروط الاستخدام",
@@ -100,7 +103,7 @@ export const ar = {
     cookiePolicy: "سياسة ملفات تعريف الارتباط",
     declarationOfConformity: "إقرار المطابقة",
     copyright:
-      "IPLAY™ {year} © جميع الحقوق محفوظة. جميع المحتويات الصوتية والمرئية والنصية على هذا الموقع خاضعة لحقوق النشر وحقوق الملكية الفكرية الأخرى المملوكة لـ IPLAY. لا يجوز إعادة إنتاج أو إعادة استخدام أي من هذا المحتوى لأغراض تجارية دون إذن كتابي.",
+      "IPLAY™ {year} © جميع الحقوق محفوظة. جميع المحتويات الصوتية والمرئية والنصية على هذا الموقع (بما في ذلك الأسماء والشخصيات والصور والعلامات التجارية والشعارات) محمية بعلامات تجارية وحقوق نشر وحقوق ملكية فكرية أخرى مملوكة لـ IPLAY™ أو الشركات التابعة لها أو المرخِّصين أو المرخَّص لهم أو الموردين أو الحسابات.",
     backToTop: "العودة للأعلى",
     facebook: "Facebook",
     instagram: "Instagram",
@@ -118,6 +121,27 @@ export const ar = {
   },
   errors: {
     notFound: "الصفحة غير موجودة",
+    notFoundTitle: "لم نتمكن من العثور على هذه الصفحة",
+    notFoundBody:
+      "ربما نُقلت الصفحة أو أن الرابط غير صحيح. جرّب الصفحة الرئيسية أو تصفّح علاماتنا.",
+    backHome: "العودة للرئيسية",
+    browseCollections: "تصفّح علاماتنا",
     generic: "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
   },
-} ;
+  comingSoon: {
+    title: "قريباً",
+    description:
+      "هذه الميزة غير متاحة بعد. سيُفعَّل البحث وتسجيل الدخول والسلة في مرحلة لاحقة.",
+    close: "إغلاق",
+  },
+  pages: {
+    collectionIntroHeading: "عن هذه العلامة",
+    productsComingSoonHeading: "المنتجات قريباً",
+    productsComingSoonBody:
+      "لم تُدرج منتجات هذه العلامة بعد. استكشف القصة الآن — والتسوق سيأتي في مرحلة لاحقة.",
+    relatedHeading: "علامات ذات صلة",
+    exploreCollection: "استكشف العلامة",
+    backToCollections: "كل العلامات",
+    contactCta: "تواصل معنا",
+  },
+};

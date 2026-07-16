@@ -8,6 +8,7 @@ import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { MegaMenus } from "@/components/home/MegaMenus";
+import { ComingSoonControl } from "@/components/pages/ComingSoonControl";
 import {
   localeCookieName,
   localizedPath,
@@ -277,30 +278,27 @@ export function HomepageHeader({ mode }: HomepageHeaderProps) {
             </nav>
 
             <div className="ms-auto flex shrink-0 items-center gap-1 sm:gap-2">
-              <button
-                type="button"
-                aria-label={dictionary.navigation.search}
+              <ComingSoonControl
+                label={dictionary.navigation.search}
                 className="homepage-search-pill focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <span>{dictionary.navigation.search}</span>
                 <Search className="h-4 w-4 shrink-0" aria-hidden="true" />
-              </button>
+              </ComingSoonControl>
 
-              <Link
-                href={localizedPath(locale, "/sign-in")}
-                aria-label={dictionary.navigation.signIn}
+              <ComingSoonControl
+                label={dictionary.navigation.signIn}
                 className="homepage-header-action homepage-header-action--icon hidden sm:inline-flex"
               >
                 <User className="h-5 w-5" aria-hidden="true" />
-              </Link>
+              </ComingSoonControl>
 
-              <Link
-                href={localizedPath(locale, "/cart")}
-                aria-label={dictionary.navigation.cart}
+              <ComingSoonControl
+                label={dictionary.navigation.cart}
                 className="homepage-header-action homepage-header-action--icon"
               >
-                <ShoppingBag className="h-5 w-5" />
-              </Link>
+                <ShoppingBag className="h-5 w-5" aria-hidden="true" />
+              </ComingSoonControl>
 
               <button
                 type="button"
@@ -314,7 +312,7 @@ export function HomepageHeader({ mode }: HomepageHeaderProps) {
           </div>
 
           <div className="homepage-header__mega-desktop">
-            <MegaMenus activeMenu={activeMenu} />
+            <MegaMenus activeMenu={activeMenu} onNavigate={closeMenu} />
           </div>
         </div>
       </header>

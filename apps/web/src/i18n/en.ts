@@ -42,7 +42,7 @@ export const en = {
     headingLines: ["Reimagining Play,", "Every Single Day"],
     paragraphs: [
       "At IPLAY, we believe play is more than entertainment — it is a way to discover the world. We craft bold visual experiences that blend imagination with quality.",
-      "From curated collections to every design detail, we give families an original platform that inspires children and opens space for creativity.",
+      "From curated brands to every design detail, we give families an original platform that inspires children and opens space for creativity.",
       "This is the beginning of the IPLAY journey — original identity, temporary content, and a visual rhythm inspired by premium toy brands without copying protected assets.",
     ],
   },
@@ -56,6 +56,7 @@ export const en = {
       name: "Creative Studio",
       eyebrow: "Collection 02",
       cta: "See More",
+      viewRange: "View Range",
     },
     "outdoor-fun": {
       name: "Outdoor Fun",
@@ -81,7 +82,7 @@ export const en = {
   footer: {
     heading: "Come work with us.",
     careers: "Careers",
-    quickLinks: "Quicklinks",
+    quickLinks: "Quick Links",
     home: "Home",
     news: "News",
     whereToBuy: "Where to buy",
@@ -91,8 +92,10 @@ export const en = {
     contact: "Contact",
     patents: "Patents",
     followUs: "Follow Us",
+    socialComingSoon: "Official social profiles will be linked when ready.",
     socialHandle: "@lifeatiplay",
-    linkedIn: "LinkedIn",
+    linkedIn: "Linked.In",
+    linkedInIcon: "LinkedIn",
     tiktok: "TikTok",
     policies: "Policies",
     termsOfUse: "Terms of use",
@@ -100,13 +103,13 @@ export const en = {
     cookiePolicy: "Cookie Policy",
     declarationOfConformity: "Declaration Of Conformity",
     copyright:
-      "IPLAY™ {year} © All rights reserved. All audio, visual and textual content on this site is subject to copyright and other intellectual property rights owned by IPLAY. You may not reproduce or reuse any of this content for commercial purposes without written permission.",
+      "IPLAY™ {year} © All rights reserved. All audio, visual and textual content on this site (including all names, characters, images, trademarks and logos) are protected by trademarks, copyrights and other Intellectual Property rights owned by IPLAY™ or its subsidiaries, licensors, licensees, suppliers and accounts.",
     backToTop: "Back to top",
     facebook: "Facebook",
     instagram: "Instagram",
     // Legacy keys kept for any remaining references
     description: "",
-    explore: "Quicklinks",
+    explore: "Quick Links",
     company: "Our Company",
     forMarketers: "For Marketers",
     forWholesale: "For Wholesale Traders",
@@ -119,6 +122,27 @@ export const en = {
   },
   errors: {
     notFound: "Page not found",
+    notFoundTitle: "We Couldn’t Find That Page",
+    notFoundBody:
+      "The page may have moved, or the link might be incorrect. Try the homepage or browse our brands.",
+    backHome: "Back to Home",
+    browseCollections: "Browse Our Brands",
     generic: "Something went wrong. Please try again.",
   },
-} ;
+  comingSoon: {
+    title: "Coming Soon",
+    description:
+      "This feature is not available yet. Search, Sign In, and Cart will open in a later phase.",
+    close: "Close",
+  },
+  pages: {
+    collectionIntroHeading: "About This Brand",
+    productsComingSoonHeading: "Products Coming Soon",
+    productsComingSoonBody:
+      "Individual products for this brand are not listed yet. Explore the story for now — shopping will arrive in a later phase.",
+    relatedHeading: "Related Brands",
+    exploreCollection: "Explore Brand",
+    backToCollections: "All Brands",
+    contactCta: "Contact Us",
+  },
+};

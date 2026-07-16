@@ -11,9 +11,10 @@ import type { MegaMenuId } from "@/hooks/useMegaMenu";
 
 interface MegaMenusProps {
   activeMenu: MegaMenuId | null;
+  onNavigate?: () => void;
 }
 
-export function MegaMenus({ activeMenu }: MegaMenusProps) {
+export function MegaMenus({ activeMenu, onNavigate }: MegaMenusProps) {
   const locale = useLocale();
   const dictionary = useDictionary();
   const collections = HOMEPAGE_COLLECTIONS;
@@ -34,12 +35,12 @@ export function MegaMenus({ activeMenu }: MegaMenusProps) {
       label: dictionary.navigation.about,
     },
     {
-      href: localizedPath(locale, "/news"),
-      label: dictionary.footer.news,
-    },
-    {
       href: localizedPath(locale, "/contact"),
       label: dictionary.footer.contact,
+    },
+    {
+      href: localizedPath(locale, "/careers"),
+      label: dictionary.footer.careers,
     },
   ];
 
@@ -74,6 +75,7 @@ export function MegaMenus({ activeMenu }: MegaMenusProps) {
                           `/collections/${collection.slug}`,
                         )}
                         className="collections-mega-menu__link"
+                        onClick={onNavigate}
                       >
                         {copy.name}
                       </Link>
@@ -87,6 +89,7 @@ export function MegaMenus({ activeMenu }: MegaMenusProps) {
           <Link
             href={localizedPath(locale, `/collections/${featured.slug}`)}
             className="collections-mega-menu__feature"
+            onClick={onNavigate}
           >
             <Image
               src={featured.desktopMedia}
@@ -101,7 +104,7 @@ export function MegaMenus({ activeMenu }: MegaMenusProps) {
                 {featuredCopy.name}
               </p>
               <span className="collections-mega-menu__feature-cta">
-                {dictionary.navigation.viewProduct}
+                {dictionary.pages.exploreCollection}
                 <ArrowRight
                   className="collections-mega-menu__feature-arrow"
                   aria-hidden="true"
@@ -122,7 +125,12 @@ export function MegaMenus({ activeMenu }: MegaMenusProps) {
         aria-label={dictionary.navigation.about}
       >
         {aboutLinks.map((link) => (
-          <Link key={link.href} href={link.href} className="about-mega-menu__link">
+          <Link
+            key={link.href}
+            href={link.href}
+            className="about-mega-menu__link"
+            onClick={onNavigate}
+          >
             {link.label}
           </Link>
         ))}

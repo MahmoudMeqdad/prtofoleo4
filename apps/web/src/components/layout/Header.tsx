@@ -12,7 +12,7 @@ import { useScrollPosition } from "@/hooks/useScrollPosition";
 
 const NAV_LINKS = [
   { href: "/", label: "الرئيسية" },
-  { href: "/collections", label: "المجموعات" },
+  { href: "/collections", label: "علاماتنا" },
   { href: "/products", label: "المنتجات" },
   { href: "/dropshipping", label: "دروب شيبينج" },
   { href: "/wholesale", label: "الجملة" },

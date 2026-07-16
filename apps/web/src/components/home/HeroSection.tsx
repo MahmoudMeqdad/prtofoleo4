@@ -52,7 +52,7 @@ export function HeroSection() {
                 href="#collections"
                 className="gap-2 shadow-lg"
               >
-                استكشف المجموعات
+                استكشف علاماتنا
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               </Button>
               <Button
@@ -61,7 +61,7 @@ export function HeroSection() {
                 href="/collections"
                 className="border-white/40 bg-white/5 text-white hover:bg-white/15"
               >
-                كل المجموعات
+                كل العلامات
               </Button>
             </div>
           </motion.div>
