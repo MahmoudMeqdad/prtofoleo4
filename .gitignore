@@ -31,3 +31,9 @@ artifacts/**/*.mp4
 # Standalone build output
 apps/web/.next/
 apps/api/dist/
+
+# Local video backups / temp encodes
+apps/web/public/media/home/*-backup.mp4
+apps/web/public/media/home/*-tmp.mp4
+apps/web/public/media/home/hero-loop-iplay.mp4
+apps/web/public/media/home/hero-loop-h264.mp4
