@@ -1,0 +1,5 @@
+C:/Users/mqdad/Downloads/Documents/الموقع الجديد/artifacts/day-02/desktop-viewport.png
+C:/Users/mqdad/Downloads/Documents/الموقع الجديد/artifacts/day-02/mobile-viewport.png
+C:/Users/mqdad/Downloads/Documents/الموقع الجديد/artifacts/day-02/desktop-full-page.png
+C:/Users/mqdad/Downloads/Documents/الموقع الجديد/artifacts/day-02/mobile-full-page.png
+C:/Users/mqdad/Downloads/Documents/الموقع الجديد/artifacts/day-02/desktop-arabic.png

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1200" viewBox="0 0 1920 1200" role="img" aria-label="Plush Friends">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5c2d4a"/>
+      <stop offset="100%" stop-color="#ff8fab"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+  
+  <text x="48" y="1152" fill="#ffffff" font-family="system-ui,sans-serif" font-size="28" opacity="0.35">IPLAY TEMP</text>
+  <text x="48" y="72" fill="#ffffff" font-family="system-ui,sans-serif" font-size="20" opacity="0.5">Plush Friends</text>
+</svg>

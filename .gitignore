@@ -1,0 +1,33 @@
+node_modules/
+dist/
+.next/
+.turbo/
+*.tsbuildinfo
+.env
+.env.local
+.env*.local
+*.log
+.DS_Store
+coverage/
+
+# Local PostgreSQL dev cluster (never commit)
+.local/
+.local/pgdata/
+.local/*.log
+.local/*.pid
+.local/pg.log
+.local/pgdata/postmaster.pid
+.local/pgdata/postmaster.opts
+
+# Secrets and certificates
+*.pem
+*.key
+*.crt
+
+# Local capture / temp artifacts (keep docs screenshots only if needed)
+artifacts/cta-ref/
+artifacts/**/*.mp4
+
+# Standalone build output
+apps/web/.next/
+apps/api/dist/
