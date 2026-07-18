@@ -2,22 +2,22 @@ import type { LocalizedString } from "../locale";
 
 export const aboutContent = {
   metaTitle: {
-    en: "About IPLAY | Play Reimagined",
-    ar: "عن IPLAY | اللعب بإبداع جديد",
+    en: "About Velvet Kids | Play Reimagined",
+    ar: "عن Velvet Kids | اللعب بإبداع جديد",
   } satisfies LocalizedString,
   metaDescription: {
-    en: "Learn about IPLAY — a toy brand focused on play, imagination, childhood, and partners who share that vision.",
-    ar: "تعرّف على IPLAY — علامة ألعاب تركّز على اللعب والخيال والطفولة والشركاء الذين يشاركون هذه الرؤية.",
+    en: "Learn about Velvet Kids — a toy brand focused on play, imagination, childhood, and partners who share that vision.",
+    ar: "تعرّف على Velvet Kids — علامة ألعاب تركّز على اللعب والخيال والطفولة والشركاء الذين يشاركون هذه الرؤية.",
   } satisfies LocalizedString,
-  heroTitle: { en: "About IPLAY", ar: "عن IPLAY" },
+  heroTitle: { en: "About Velvet Kids", ar: "عن Velvet Kids" },
   heroSubtitle: {
     en: "We reimagine play as a daily invitation to explore, create, and grow.",
     ar: "نعيد ابتكار اللعب كدعوة يومية للاستكشاف والإبداع والنمو.",
   },
   storyHeading: { en: "Our Story", ar: "قصتنا" },
   storyBody: {
-    en: "IPLAY began as a belief that toys should feel bold, original, and kind to childhood. We are building a visual platform and product experience that respects imagination without copying protected brands.",
-    ar: "بدأت IPLAY من إيمان بأن الألعاب يجب أن تكون جريئة وأصلية ولطيفة مع الطفولة. نبني منصة بصرية وتجربة منتجات تحترم الخيال دون نسخ علامات محمية.",
+    en: "Velvet Kids began as a belief that toys should feel bold, original, and kind to childhood. We are building a visual platform and product experience that respects imagination without copying protected brands.",
+    ar: "بدأت Velvet Kids من إيمان بأن الألعاب يجب أن تكون جريئة وأصلية ولطيفة مع الطفولة. نبني منصة بصرية وتجربة منتجات تحترم الخيال دون نسخ علامات محمية.",
   },
   missionHeading: { en: "Mission", ar: "مهمتنا" },
   missionBody: {
@@ -26,8 +26,8 @@ export const aboutContent = {
   },
   visionHeading: { en: "Vision", ar: "رؤيتنا" },
   visionBody: {
-    en: "A trusted IPLAY home for families, marketers, and wholesale partners who want quality play with a clear original identity.",
-    ar: "أن نكون بيتاً موثوقاً لـ IPLAY للعائلات والمسوّقين وتجار الجملة الذين يريدون لعباً بجودة وهوية أصلية واضحة.",
+    en: "A trusted Velvet Kids home for families, marketers, and wholesale partners who want quality play with a clear original identity.",
+    ar: "أن نكون بيتاً موثوقاً لـ Velvet Kids للعائلات والمسوّقين وتجار الجملة الذين يريدون لعباً بجودة وهوية أصلية واضحة.",
   },
   valuesHeading: { en: "Values", ar: "قيمنا" },
   values: [
@@ -73,13 +73,13 @@ export const aboutContent = {
     ar: "للمسوّقين وتجار الجملة",
   },
   partnersBody: {
-    en: "IPLAY is preparing pathways for marketers and wholesale traders. Informational pages are available today; account registration will open later.",
-    ar: "تستعد IPLAY لمسارات للمسوّقين وتجار الجملة. الصفحات التعريفية متاحة اليوم، وسيُفتح تسجيل الحسابات لاحقاً.",
+    en: "Velvet Kids is preparing pathways for marketers and wholesale traders. Informational pages are available today; account registration will open later.",
+    ar: "تستعد Velvet Kids لمسارات للمسوّقين وتجار الجملة. الصفحات التعريفية متاحة اليوم، وسيُفتح تسجيل الحسابات لاحقاً.",
   },
   ctaHeading: { en: "Want to talk?", ar: "هل تريد التحدث معنا؟" },
   ctaBody: {
-    en: "Reach out with questions about brands, partnerships, or the IPLAY journey.",
-    ar: "تواصل معنا بأسئلتك حول العلامات أو الشراكات أو رحلة IPLAY.",
+    en: "Reach out with questions about brands, partnerships, or the Velvet Kids journey.",
+    ar: "تواصل معنا بأسئلتك حول العلامات أو الشراكات أو رحلة Velvet Kids.",
   },
-  ctaLabel: { en: "Contact IPLAY", ar: "تواصل مع IPLAY" },
+  ctaLabel: { en: "Contact Velvet Kids", ar: "تواصل مع Velvet Kids" },
 };

@@ -4,27 +4,27 @@ type Faq = { question: LocalizedString; answer: LocalizedString };
 
 export const wholesaleContent = {
   metaTitle: {
-    en: "Wholesale | IPLAY Traders",
-    ar: "الجملة | تجار IPLAY",
+    en: "Wholesale | Velvet Kids Traders",
+    ar: "الجملة | تجار Velvet Kids",
   } satisfies LocalizedString,
   metaDescription: {
-    en: "Learn about IPLAY wholesale — who it is for, pricing tiers, MOQ, MAP, and the ordering process.",
-    ar: "تعرّف على جملة IPLAY — لمن هي، مستويات التسعير، الحد الأدنى للكمية، حماية السعر، وعملية الطلب.",
+    en: "Learn about Velvet Kids wholesale — who it is for, pricing tiers, MOQ, MAP, and the ordering process.",
+    ar: "تعرّف على جملة Velvet Kids — لمن هي، مستويات التسعير، الحد الأدنى للكمية، حماية السعر، وعملية الطلب.",
   } satisfies LocalizedString,
-  heroTitle: { en: "IPLAY Wholesale", ar: "جملة IPLAY" },
+  heroTitle: { en: "Velvet Kids Wholesale", ar: "جملة Velvet Kids" },
   heroSubtitle: {
-    en: "For retailers and traders preparing to stock IPLAY brands. Wholesale accounts are coming soon.",
-    ar: "لتجار التجزئة والجملة المستعدين لتوفير مجموعات IPLAY. حسابات الجملة قادمة قريباً.",
+    en: "For retailers and traders preparing to stock Velvet Kids brands. Wholesale accounts are coming soon.",
+    ar: "لتجار التجزئة والجملة المستعدين لتوفير مجموعات Velvet Kids. حسابات الجملة قادمة قريباً.",
   },
   whoHeading: { en: "Who Wholesale Is For", ar: "لمن هي الجملة" },
   whoBody: {
-    en: "Wholesale is intended for shops, distributors, and traders who want to offer IPLAY products to their customers with clear commercial terms.",
-    ar: "الجملة موجّهة للمتاجر والموزّعين والتجار الذين يريدون تقديم منتجات IPLAY لعملائهم بشروط تجارية واضحة.",
+    en: "Wholesale is intended for shops, distributors, and traders who want to offer Velvet Kids products to their customers with clear commercial terms.",
+    ar: "الجملة موجّهة للمتاجر والموزّعين والتجار الذين يريدون تقديم منتجات Velvet Kids لعملائهم بشروط تجارية واضحة.",
   },
   tiersHeading: { en: "Pricing-Tier Concept", ar: "مفهوم مستويات التسعير" },
   tiersBody: {
-    en: "IPLAY plans clear tiers that reflect order volume. Exact prices stay private until trader accounts are approved.",
-    ar: "تخطط IPLAY لمستويات واضحة تعكس حجم الطلب. تبقى الأسعار الدقيقة خاصة حتى اعتماد حسابات التجار.",
+    en: "Velvet Kids plans clear tiers that reflect order volume. Exact prices stay private until trader accounts are approved.",
+    ar: "تخطط Velvet Kids لمستويات واضحة تعكس حجم الطلب. تبقى الأسعار الدقيقة خاصة حتى اعتماد حسابات التجار.",
   },
   moqHeading: { en: "MOQ Explained", ar: "شرح الحد الأدنى للكمية" },
   moqBody: {
@@ -61,8 +61,8 @@ export const wholesaleContent = {
   benefitsHeading: { en: "Benefits for Traders", ar: "مزايا للتجار" },
   benefits: [
     {
-      en: "Access to curated IPLAY brands",
-      ar: "الوصول إلى مجموعات IPLAY المنتقاة",
+      en: "Access to curated Velvet Kids brands",
+      ar: "الوصول إلى مجموعات Velvet Kids المنتقاة",
     },
     {
       en: "Clear commercial structure when accounts open",

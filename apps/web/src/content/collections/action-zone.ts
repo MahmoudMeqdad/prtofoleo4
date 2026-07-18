@@ -79,7 +79,7 @@ export const actionZone: CollectionContent = {
   ],
   relatedCollectionSlugs: ["outdoor-fun", "tiny-worlds", "creative-studio"],
   metaDescription: {
-    en: "Enter Action Zone — energetic IPLAY toys for fast, playful challenges.",
-    ar: "ادخل منطقة الحركة — ألعاب IPLAY النشطة للتحديات السريعة والممتعة.",
+    en: "Enter Action Zone — energetic Velvet Kids toys for fast, playful challenges.",
+    ar: "ادخل منطقة الحركة — ألعاب Velvet Kids النشطة للتحديات السريعة والممتعة.",
   },
 };

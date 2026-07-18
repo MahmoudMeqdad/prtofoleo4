@@ -2,12 +2,12 @@ import type { LocalizedString } from "../locale";
 
 export const collectionsIndexContent = {
   metaTitle: {
-    en: "Our Brands | IPLAY",
-    ar: "علاماتنا | IPLAY",
+    en: "Our Brands | Velvet Kids",
+    ar: "علاماتنا | Velvet Kids",
   } satisfies LocalizedString,
   metaDescription: {
-    en: "Explore IPLAY brands — Tiny Worlds, Creative Studio, Outdoor Fun, Plush Friends, Action Zone, and Learning Lab.",
-    ar: "اكتشف علامات IPLAY — عوالم صغيرة، استوديو الإبداع، مرح في الهواء الطلق، أصدقاء محشوة، منطقة الحركة، ومختبر التعلم.",
+    en: "Explore Velvet Kids brands — Tiny Worlds, Creative Studio, Outdoor Fun, Plush Friends, Action Zone, and Learning Lab.",
+    ar: "اكتشف علامات Velvet Kids — عوالم صغيرة، استوديو الإبداع، مرح في الهواء الطلق، أصدقاء محشوة، منطقة الحركة، ومختبر التعلم.",
   } satisfies LocalizedString,
   heroTitle: {
     en: "Our Brands",
@@ -22,8 +22,8 @@ export const collectionsIndexContent = {
     ar: "لعب منتَقى بعناية",
   } satisfies LocalizedString,
   introBody: {
-    en: "Every IPLAY brand is a visual chapter. Browse large, editorial entry points — then step into the story behind each world.",
-    ar: "كل علامة من IPLAY فصل بصري. تصفّح مداخل تحريرية واسعة — ثم ادخل إلى القصة خلف كل عالم.",
+    en: "Every Velvet Kids brand is a visual chapter. Browse large, editorial entry points — then step into the story behind each world.",
+    ar: "كل علامة من Velvet Kids فصل بصري. تصفّح مداخل تحريرية واسعة — ثم ادخل إلى القصة خلف كل عالم.",
   } satisfies LocalizedString,
   exploreCta: {
     en: "Explore",

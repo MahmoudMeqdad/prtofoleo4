@@ -4,6 +4,7 @@ import { useCallback, useEffect } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { useDictionary } from "@/providers/LocaleProvider";
 
@@ -81,14 +82,7 @@ export function MobileMenu({
               className="flex items-center justify-between border-b border-border px-4"
               style={{ height: "var(--main-header-height)" }}
             >
-              <Link
-                href={homeHref}
-                className="text-base font-bold tracking-wide text-gray-500"
-                style={{ fontFamily: "var(--font-display)" }}
-                onClick={onClose}
-              >
-                IPLAY
-              </Link>
+              <BrandLogo href={homeHref} onClick={onClose} />
               <button
                 type="button"
                 onClick={onClose}

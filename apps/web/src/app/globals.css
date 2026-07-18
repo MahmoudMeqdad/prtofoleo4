@@ -84,26 +84,24 @@
   );
 }
 
-.iplay-logo-badge {
+.brand-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--logo-red);
-  color: #ffffff;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: 0.5px;
-  line-height: 1;
-  padding: 10px 17px;
-  text-transform: uppercase;
-  transform: rotate(-3deg);
-  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.22);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  line-height: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.iplay-logo-badge:hover {
-  transform: rotate(-3deg) scale(1.02);
+.brand-logo__image {
+  width: auto;
+  height: clamp(40px, 5vw, 56px);
+  max-width: min(180px, 42vw);
+  object-fit: contain;
+}
+
+.brand-logo:hover {
+  transform: scale(1.02);
+  opacity: 0.95;
 }
 
 .homepage-header__utility {

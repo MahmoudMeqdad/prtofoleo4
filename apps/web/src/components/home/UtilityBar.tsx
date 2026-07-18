@@ -1,6 +1,7 @@
 "use client";
 
 import { Container } from "@/components/ui/Container";
+import { BRAND_NAME } from "@/config/brand";
 import { useDictionary } from "@/providers/LocaleProvider";
 
 export function UtilityBar() {
@@ -15,7 +16,7 @@ export function UtilityBar() {
         <span className="hidden truncate font-medium uppercase sm:inline">
           {dictionary.utility.message}
         </span>
-        <span className="truncate font-medium uppercase sm:hidden">IPLAY</span>
+        <span className="truncate font-medium sm:hidden">{BRAND_NAME}</span>
       </Container>
     </div>
   );

@@ -2,14 +2,14 @@ import type { LocalizedString } from "../locale";
 
 export const contactContent = {
   metaTitle: {
-    en: "Contact | IPLAY",
-    ar: "تواصل | IPLAY",
+    en: "Contact | Velvet Kids",
+    ar: "تواصل | Velvet Kids",
   } satisfies LocalizedString,
   metaDescription: {
-    en: "Contact IPLAY by WhatsApp, email, or the inquiry form interface.",
-    ar: "تواصل مع IPLAY عبر واتساب أو البريد أو واجهة نموذج الاستفسار.",
+    en: "Contact Velvet Kids by WhatsApp, email, or the inquiry form interface.",
+    ar: "تواصل مع Velvet Kids عبر واتساب أو البريد أو واجهة نموذج الاستفسار.",
   } satisfies LocalizedString,
-  heroTitle: { en: "Contact IPLAY", ar: "تواصل مع IPLAY" },
+  heroTitle: { en: "Contact Velvet Kids", ar: "تواصل مع Velvet Kids" },
   heroSubtitle: {
     en: "Questions about brands, partnerships, or the platform — we are here to listen.",
     ar: "أسئلة حول العلامات أو الشراكات أو المنصة — نحن هنا للاستماع.",
@@ -20,7 +20,7 @@ export const contactContent = {
     ar: "القناة المفضّلة للأسئلة السريعة.",
   },
   emailLabel: { en: "Email", ar: "البريد الإلكتروني" },
-  emailValue: { en: "hello@iplay.example", ar: "hello@iplay.example" },
+  emailValue: { en: "hello@Velvet Kids.example", ar: "hello@Velvet Kids.example" },
   socialHeading: { en: "Social", ar: "التواصل الاجتماعي" },
   socialHint: {
     en: "Public social profiles will be linked here when official accounts are ready.",

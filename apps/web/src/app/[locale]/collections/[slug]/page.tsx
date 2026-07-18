@@ -28,7 +28,7 @@ export async function generateMetadata({
   if (!collection) return {};
   const locale = localeParam as Locale;
   const titleSuffix =
-    locale === "ar" ? "علامات IPLAY" : "IPLAY Brands";
+    locale === "ar" ? "علامات Velvet Kids" : "Velvet Kids Brands";
   return buildPageMetadata({
     locale,
     path: `/collections/${slug}`,

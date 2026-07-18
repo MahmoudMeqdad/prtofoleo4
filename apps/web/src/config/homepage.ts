@@ -14,9 +14,9 @@ export interface HomepageCollection {
 
 export const HERO_MEDIA = {
   videoSrc: "/media/home/hero-loop.mp4",
-  posterSrc: "/media/home/hero-poster.svg",
+  posterSrc: "/media/home/hero-poster.png",
   fallbackGradient:
-    "linear-gradient(135deg, #1a1040 0%, #5a3fd9 40%, #6c4cff 60%, #2d1b69 100%)",
+    "linear-gradient(135deg, #c8121b 0%, #9a0e16 55%, #6b0a10 100%)",
 };
 
 export const HOMEPAGE_COLLECTIONS: HomepageCollection[] = [

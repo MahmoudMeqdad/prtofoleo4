@@ -82,7 +82,7 @@ export const creativeStudio: CollectionContent = {
   ],
   relatedCollectionSlugs: ["tiny-worlds", "learning-lab", "outdoor-fun"],
   metaDescription: {
-    en: "Discover Creative Studio — IPLAY toys that invite children to draw, build, and invent.",
-    ar: "اكتشف استوديو الإبداع — ألعاب IPLAY التي تدعو الأطفال للرسم والبناء والابتكار.",
+    en: "Discover Creative Studio — Velvet Kids toys that invite children to draw, build, and invent.",
+    ar: "اكتشف استوديو الإبداع — ألعاب Velvet Kids التي تدعو الأطفال للرسم والبناء والابتكار.",
   },
 };

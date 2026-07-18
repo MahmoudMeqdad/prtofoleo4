@@ -1,6 +1,6 @@
 export const en = {
   metadata: {
-    title: "IPLAY | Toys, Play and Imagination",
+    title: "Velvet Kids | Toys, Play and Imagination",
     description:
       "Discover playful toys and products created for children, families, marketers and wholesale partners.",
   },
@@ -41,9 +41,9 @@ export const en = {
   editorial: {
     headingLines: ["Reimagining Play,", "Every Single Day"],
     paragraphs: [
-      "At IPLAY, we believe play is more than entertainment — it is a way to discover the world. We craft bold visual experiences that blend imagination with quality.",
+      "At Velvet Kids, we believe play is more than entertainment — it is a way to discover the world. We craft bold visual experiences that blend imagination with quality.",
       "From curated brands to every design detail, we give families an original platform that inspires children and opens space for creativity.",
-      "This is the beginning of the IPLAY journey — original identity, temporary content, and a visual rhythm inspired by premium toy brands without copying protected assets.",
+      "This is the beginning of the Velvet Kids journey — original identity, temporary content, and a visual rhythm inspired by premium toy brands without copying protected assets.",
     ],
   },
   collections: {
@@ -93,7 +93,7 @@ export const en = {
     patents: "Patents",
     followUs: "Follow Us",
     socialComingSoon: "Official social profiles will be linked when ready.",
-    socialHandle: "@lifeatiplay",
+    socialHandle: "@velvetkids",
     linkedIn: "Linked.In",
     linkedInIcon: "LinkedIn",
     tiktok: "TikTok",
@@ -103,7 +103,7 @@ export const en = {
     cookiePolicy: "Cookie Policy",
     declarationOfConformity: "Declaration Of Conformity",
     copyright:
-      "IPLAY™ {year} © All rights reserved. All audio, visual and textual content on this site (including all names, characters, images, trademarks and logos) are protected by trademarks, copyrights and other Intellectual Property rights owned by IPLAY™ or its subsidiaries, licensors, licensees, suppliers and accounts.",
+      "Velvet Kids™ {year} © All rights reserved. All audio, visual and textual content on this site (including all names, characters, images, trademarks and logos) are protected by trademarks, copyrights and other Intellectual Property rights owned by Velvet Kids™ or its subsidiaries, licensors, licensees, suppliers and accounts.",
     backToTop: "Back to top",
     facebook: "Facebook",
     instagram: "Instagram",

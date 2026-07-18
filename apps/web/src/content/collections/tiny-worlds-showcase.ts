@@ -7,26 +7,13 @@ import { tinyWorlds } from "./tiny-worlds";
 import type { CollectionFeature } from "./showcase-types";
 
 /** Maps Tiny Worlds content into a ZURU-style brand showcase. */
-export function getTinyWorldsShowcase(
-  locale: Locale,
-  dictionary: Dictionary,
-): CollectionFeature[] {
+export function getTinyWorldsShowcase(locale: Locale, dictionary: Dictionary): CollectionFeature[] {
   const c = tinyWorlds;
   const seeMore = dictionary.collections["tiny-worlds"].cta;
   const related = getRelatedCollections(c);
+  const detailHref = (slug: string) => localizedPath(locale, `/collections/tiny-worlds/${slug}`);
 
-  const relatedHref = (index: number) => {
-    const target = related[index % Math.max(related.length, 1)];
-    return target
-      ? localizedPath(locale, `/collections/${target.slug}`)
-      : localizedPath(locale, "/collections");
-  };
-
-  const alignments = [
-    "bottom-left",
-    "bottom-right",
-    "center-left",
-  ] as const;
+  const alignments = ["bottom-left", "bottom-right", "center-left"] as const;
 
   const features: CollectionFeature[] = [
     {
@@ -36,7 +23,8 @@ export function getTinyWorldsShowcase(
       image: c.hero.desktop,
       mobileImage: c.hero.mobile,
       imageAlt: t(c.name, locale),
-      href: relatedHref(0),
+      href: detailHref("tiny-worlds"),
+      linkMedia: true,
       ctaLabel: seeMore,
       alignment: "bottom-left",
       theme: "dark",
@@ -50,7 +38,12 @@ export function getTinyWorldsShowcase(
       image: section.media.desktop,
       mobileImage: section.media.mobile,
       imageAlt: t(section.media.alt, locale),
-      href: relatedHref(index),
+      href: detailHref(
+        ["play-at-a-smaller-scale", "stories-without-a-script", "details-that-reward-attention"][
+          index
+        ],
+      ),
+      linkMedia: true,
       ctaLabel: seeMore,
       alignment: alignments[index % alignments.length],
       theme: "dark" as const,

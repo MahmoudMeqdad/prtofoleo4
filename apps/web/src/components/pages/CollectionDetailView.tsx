@@ -7,12 +7,12 @@ import { ProductsComingSoon } from "@/components/pages/ProductsComingSoon";
 import { RelatedCollections } from "@/components/pages/RelatedCollections";
 import { Reveal } from "@/components/pages/Reveal";
 import { CreativeStudioShowcaseView } from "@/components/pages/CreativeStudioShowcaseView";
-import { OutdoorFunShowcaseView } from "@/components/pages/OutdoorFunShowcaseView";
-import { TinyWorldsShowcaseView } from "@/components/pages/TinyWorldsShowcaseView";
 import {
-  getRelatedCollections,
-  type CollectionContent,
-} from "@/content/collections";
+  CollectionProductShowcaseView,
+  OutdoorFunShowcaseView,
+} from "@/components/pages/OutdoorFunShowcaseView";
+import { TinyWorldsShowcaseView } from "@/components/pages/TinyWorldsShowcaseView";
+import { getRelatedCollections, type CollectionContent } from "@/content/collections";
 import { t } from "@/content/locale";
 import type { Locale } from "@/i18n/config";
 import { useDictionary } from "@/providers/LocaleProvider";
@@ -36,8 +36,15 @@ export function CollectionDetailView({
     return <TinyWorldsShowcaseView locale={locale} />;
   }
 
-  if (collection.slug === "outdoor-fun") {
+  if (collection.slug === "outdoor-fun" && locale === "en") {
     return <OutdoorFunShowcaseView locale={locale} />;
+  }
+
+  if (
+    locale === "en" &&
+    ["learning-lab", "plush-friends", "action-zone"].includes(collection.slug)
+  ) {
+    return <CollectionProductShowcaseView locale={locale} collection={collection} />;
   }
 
   return (
@@ -45,9 +52,7 @@ export function CollectionDetailView({
       <PageHero
         title={name}
         subtitle={t(collection.shortDescription, locale)}
-        eyebrow={
-          collection.eyebrow ? t(collection.eyebrow, locale) : undefined
-        }
+        eyebrow={collection.eyebrow ? t(collection.eyebrow, locale) : undefined}
         desktopMedia={collection.hero.desktop}
         mobileMedia={collection.hero.mobile}
         textColor={collection.hero.textColor}

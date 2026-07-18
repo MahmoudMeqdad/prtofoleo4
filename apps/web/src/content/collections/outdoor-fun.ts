@@ -80,7 +80,7 @@ export const outdoorFun: CollectionContent = {
   ],
   relatedCollectionSlugs: ["action-zone", "creative-studio", "plush-friends"],
   metaDescription: {
-    en: "Explore Outdoor Fun — active IPLAY toys for movement and outdoor play.",
-    ar: "اكتشف مرح في الهواء الطلق — ألعاب IPLAY النشطة للحركة واللعب الخارجي.",
+    en: "Explore Outdoor Fun — active Velvet Kids toys for movement and outdoor play.",
+    ar: "اكتشف مرح في الهواء الطلق — ألعاب Velvet Kids النشطة للحركة واللعب الخارجي.",
   },
 };

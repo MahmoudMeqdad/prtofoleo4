@@ -50,7 +50,7 @@ export function buildPageMetadata({
       title,
       description,
       url: canonical,
-      siteName: "IPLAY",
+      siteName: "Velvet Kids",
       locale: locale === "ar" ? "ar_SA" : "en_US",
       type: "website",
       ...(ogImage ? { images: [{ url: ogImage }] } : {}),

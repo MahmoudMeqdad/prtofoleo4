@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, ShoppingCart, User } from "lucide-react";
 import clsx from "clsx";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { MobileMenu } from "./MobileMenu";
@@ -38,16 +39,7 @@ export function Header() {
       style={{ height: "var(--header-height)" }}
     >
       <Container className="flex h-full items-center justify-between">
-        <Link
-          href="/"
-          className={clsx(
-            "text-2xl font-bold transition-colors",
-            heroMode ? "text-white" : "text-primary",
-          )}
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          IPLAY
-        </Link>
+        <BrandLogo href="/" />
 
         <nav className="hidden items-center gap-1 md:flex">
           {NAV_LINKS.map((link) => (

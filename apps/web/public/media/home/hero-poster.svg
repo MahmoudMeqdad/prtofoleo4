@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Hero Poster">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Velvet Kids Hero Poster">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1a1040"/>
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="55%" stop-color="#1a1040"/>
       <stop offset="100%" stop-color="#6c4cff"/>
     </linearGradient>
   </defs>
   <rect width="100%" height="100%" fill="url(#bg)"/>
-  <circle cx="960" cy="520" r="180" fill="#ff5e8a" opacity="0.35"/><circle cx="720" cy="380" r="90" fill="#ffcc33" opacity="0.45"/><rect x="1180" y="360" width="220" height="220" rx="40" fill="#ffffff" opacity="0.12"/>
-  <text x="48" y="1032" fill="#ffffff" font-family="system-ui,sans-serif" font-size="28" opacity="0.35">IPLAY TEMP</text>
-  <text x="48" y="72" fill="#ffffff" font-family="system-ui,sans-serif" font-size="20" opacity="0.5">Hero Poster</text>
+  <circle cx="960" cy="520" r="180" fill="#ff5e8a" opacity="0.28"/>
+  <circle cx="720" cy="380" r="90" fill="#ffcc33" opacity="0.35"/>
+  <rect x="1180" y="360" width="220" height="220" rx="40" fill="#ffffff" opacity="0.1"/>
+  <image
+    href="/media/brand/velvet-kids-logo.png"
+    x="660"
+    y="390"
+    width="600"
+    height="270"
+    preserveAspectRatio="xMidYMid meet"
+  />
 </svg>

@@ -4,22 +4,22 @@ type Faq = { question: LocalizedString; answer: LocalizedString };
 
 export const dropshippingContent = {
   metaTitle: {
-    en: "Dropshipping | IPLAY Partners",
-    ar: "الدروب شيبنج | شركاء IPLAY",
+    en: "Dropshipping | Velvet Kids Partners",
+    ar: "الدروب شيبنج | شركاء Velvet Kids",
   } satisfies LocalizedString,
   metaDescription: {
-    en: "Learn how IPLAY dropshipping will work for marketers — process, benefits, and what is coming next.",
-    ar: "تعرّف على كيف سيعمل دروب شيبنج IPLAY للمسوّقين — العملية والمزايا وما هو قادم.",
+    en: "Learn how Velvet Kids dropshipping will work for marketers — process, benefits, and what is coming next.",
+    ar: "تعرّف على كيف سيعمل دروب شيبنج Velvet Kids للمسوّقين — العملية والمزايا وما هو قادم.",
   } satisfies LocalizedString,
-  heroTitle: { en: "IPLAY Dropshipping", ar: "دروب شيبنج IPLAY" },
+  heroTitle: { en: "Velvet Kids Dropshipping", ar: "دروب شيبنج Velvet Kids" },
   heroSubtitle: {
     en: "An informational overview for marketers. Registration is not open yet.",
     ar: "نظرة تعريفية للمسوّقين. التسجيل غير متاح بعد.",
   },
   whatHeading: { en: "What It Is", ar: "ما هو" },
   whatBody: {
-    en: "IPLAY dropshipping will let approved marketers promote selected products and submit customer orders without holding inventory themselves.",
-    ar: "سيتيح دروب شيبنج IPLAY للمسوّقين المعتمدين الترويج لمنتجات مختارة وإرسال طلبات العملاء دون الاحتفاظ بمخزون بأنفسهم.",
+    en: "Velvet Kids dropshipping will let approved marketers promote selected products and submit customer orders without holding inventory themselves.",
+    ar: "سيتيح دروب شيبنج Velvet Kids للمسوّقين المعتمدين الترويج لمنتجات مختارة وإرسال طلبات العملاء دون الاحتفاظ بمخزون بأنفسهم.",
   },
   howHeading: { en: "How It Works", ar: "كيف يعمل" },
   howBody: {
@@ -33,8 +33,8 @@ export const dropshippingContent = {
       ar: "لا حاجة لتخزين المنتجات بنفسك",
     },
     {
-      en: "Access to IPLAY brand storytelling assets",
-      ar: "الوصول إلى أصول سرد مجموعات IPLAY",
+      en: "Access to Velvet Kids brand storytelling assets",
+      ar: "الوصول إلى أصول سرد مجموعات Velvet Kids",
     },
     {
       en: "Clear product presentation for campaigns",
@@ -101,8 +101,8 @@ export const dropshippingContent = {
     ar: "التسجيل قريباً",
   },
   ctaBody: {
-    en: "Marketer accounts are not active yet. Follow IPLAY updates or contact us with partnership questions.",
-    ar: "حسابات المسوّقين غير مفعّلة بعد. تابع تحديثات IPLAY أو تواصل معنا بأسئلة الشراكة.",
+    en: "Marketer accounts are not active yet. Follow Velvet Kids updates or contact us with partnership questions.",
+    ar: "حسابات المسوّقين غير مفعّلة بعد. تابع تحديثات Velvet Kids أو تواصل معنا بأسئلة الشراكة.",
   },
   ctaDisabled: {
     en: "Registration Coming Soon",

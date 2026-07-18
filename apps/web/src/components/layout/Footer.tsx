@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand/BrandLogo";
+import { BRAND_EMAIL, BRAND_NAME } from "@/config/brand";
 import { Container } from "../ui/Container";
 
 const MAIN_LINKS = [
@@ -26,13 +28,7 @@ export function Footer() {
       <Container className="py-12">
         <div className="grid gap-8 md:grid-cols-4">
           <div className="flex flex-col gap-3">
-            <Link
-              href="/"
-              className="text-2xl font-bold text-primary"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              IPLAY
-            </Link>
+            <BrandLogo href="/" />
             <p className="text-sm text-muted-foreground">
               منصة متكاملة لألعاب ومنتجات الأطفال. نقدم أفضل المنتجات بأسعار
               تنافسية مع خدمات دروب شيبينج والجملة.
@@ -87,14 +83,14 @@ export function Footer() {
                 واتساب: +966500000000
               </p>
               <p className="text-xs text-muted-foreground">
-                بريد: info@iplay.com
+                بريد: {BRAND_EMAIL}
               </p>
             </div>
           </div>
         </div>
 
         <div className="mt-8 border-t border-border pt-6 text-center text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} IPLAY. جميع الحقوق محفوظة.
+          &copy; {new Date().getFullYear()} {BRAND_NAME}. جميع الحقوق محفوظة.
         </div>
       </Container>
     </footer>

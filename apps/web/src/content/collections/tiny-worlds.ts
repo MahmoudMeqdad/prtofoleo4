@@ -91,7 +91,7 @@ export const tinyWorlds: CollectionContent = {
   ],
   relatedCollectionSlugs: ["creative-studio", "plush-friends", "learning-lab"],
   metaDescription: {
-    en: "Explore Tiny Worlds — miniature play sets that spark storytelling and imagination from IPLAY.",
-    ar: "اكتشف عوالم صغيرة — مجموعات لعب مصغّرة تلهم السرد والخيال من IPLAY.",
+    en: "Explore Tiny Worlds — miniature play sets that spark storytelling and imagination from Velvet Kids.",
+    ar: "اكتشف عوالم صغيرة — مجموعات لعب مصغّرة تلهم السرد والخيال من Velvet Kids.",
   },
 };

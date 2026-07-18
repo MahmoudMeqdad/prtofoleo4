@@ -15,6 +15,7 @@ export function getCreativeStudioShowcase(
   const copy = dictionary.collections["creative-studio"];
   const seeMore = copy.cta;
   const related = getRelatedCollections(c);
+  const detailSlugs = ["make-something-new", "color-first", "share-the-process"] as const;
 
   const relatedHref = (index: number) => {
     const target = related[index % Math.max(related.length, 1)];
@@ -23,11 +24,7 @@ export function getCreativeStudioShowcase(
       : localizedPath(locale, "/collections");
   };
 
-  const alignments = [
-    "bottom-left",
-    "bottom-right",
-    "center-left",
-  ] as const;
+  const alignments = ["bottom-left", "bottom-right", "center-left"] as const;
 
   const features: CollectionFeature[] = c.sections.map((section, index) => ({
     id: section.id,
@@ -36,7 +33,11 @@ export function getCreativeStudioShowcase(
     image: section.media.desktop,
     mobileImage: section.media.mobile,
     imageAlt: t(section.media.alt, locale),
-    href: relatedHref(index),
+    href:
+      locale === "en"
+        ? localizedPath(locale, `/collections/creative-studio/${detailSlugs[index]}`)
+        : relatedHref(index),
+    linkMedia: locale === "en",
     ctaLabel: seeMore,
     alignment: alignments[index % alignments.length],
     theme: "dark" as const,

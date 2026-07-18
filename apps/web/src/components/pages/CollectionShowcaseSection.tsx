@@ -23,32 +23,20 @@ function CtaArrow({ className }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <path
-        d="M10.6754 5.2702H0"
-        stroke="currentColor"
-        strokeWidth="0.5"
-      />
-      <path
-        d="M6.93945 1L10.6758 5.27015L6.93945 9.5403"
-        stroke="currentColor"
-        strokeWidth="0.5"
-      />
+      <path d="M10.6754 5.2702H0" stroke="currentColor" strokeWidth="0.5" />
+      <path d="M6.93945 1L10.6758 5.27015L6.93945 9.5403" stroke="currentColor" strokeWidth="0.5" />
     </svg>
   );
 }
 
-export function CollectionShowcaseSection({
-  feature,
-  index,
-}: CollectionShowcaseSectionProps) {
+export function CollectionShowcaseSection({ feature, index }: CollectionShowcaseSectionProps) {
   const { ref, isVisible } = useInViewOnce<HTMLElement>();
   const reducedMotion = useReducedMotion();
   const isHero = Boolean(feature.isHero);
   const TitleTag = isHero ? "h1" : "h2";
 
   const mediaStyle = {
-    ["--media-position" as string]:
-      feature.desktopPosition ?? "center center",
+    ["--media-position" as string]: feature.desktopPosition ?? "center center",
     ["--media-position-mobile" as string]:
       feature.mobilePosition ?? feature.desktopPosition ?? "center center",
   };
@@ -89,6 +77,13 @@ export function CollectionShowcaseSection({
               aria-hidden="true"
             />
           ) : null}
+          {feature.href && feature.linkMedia ? (
+            <Link
+              href={feature.href}
+              className="absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset"
+              aria-label={`${feature.ctaLabel ?? "View"}: ${feature.title}`}
+            />
+          ) : null}
         </div>
       </div>
 
@@ -103,9 +98,7 @@ export function CollectionShowcaseSection({
       {feature.href && feature.ctaLabel ? (
         <div className="collection-showcase__content">
           <div className="collection-showcase__text">
-            <TitleTag className="collection-showcase__title">
-              {feature.title}
-            </TitleTag>
+            <TitleTag className="collection-showcase__title">{feature.title}</TitleTag>
           </div>
 
           <Link
@@ -118,9 +111,7 @@ export function CollectionShowcaseSection({
               <span className="collection-showcase__cta-icon collection-showcase__cta-icon--left">
                 <CtaArrow />
               </span>
-              <span className="collection-showcase__cta-label">
-                {feature.ctaLabel}
-              </span>
+              <span className="collection-showcase__cta-label">{feature.ctaLabel}</span>
               <span className="collection-showcase__cta-icon collection-showcase__cta-icon--right">
                 <CtaArrow />
               </span>

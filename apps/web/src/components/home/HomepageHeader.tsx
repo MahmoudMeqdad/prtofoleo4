@@ -8,7 +8,9 @@ import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { MegaMenus } from "@/components/home/MegaMenus";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { ComingSoonControl } from "@/components/pages/ComingSoonControl";
+import { BRAND_NAME } from "@/config/brand";
 import {
   localeCookieName,
   localizedPath,
@@ -128,18 +130,6 @@ function LanguageDropdown({ onSwitch }: { onSwitch?: () => void }) {
   );
 }
 
-function IplayLogo({ href }: { href: string }) {
-  return (
-    <Link
-      href={href}
-      className="iplay-logo-badge shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-      style={{ fontFamily: "var(--font-display)" }}
-    >
-      IPLAY
-    </Link>
-  );
-}
-
 export function HomepageHeader({ mode }: HomepageHeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const locale = useLocale();
@@ -205,7 +195,7 @@ export function HomepageHeader({ mode }: HomepageHeaderProps) {
               {dictionary.utility.message}
             </span>
             <span className="homepage-header__utility-message truncate text-xs font-normal sm:hidden">
-              IPLAY
+              {BRAND_NAME}
             </span>
             <LanguageDropdown />
           </Container>
@@ -221,7 +211,7 @@ export function HomepageHeader({ mode }: HomepageHeaderProps) {
           )}
 
           <div className="homepage-header__main-inner relative z-10 w-full">
-            <IplayLogo href={homeHref} />
+            <BrandLogo href={homeHref} priority />
 
             <nav
               className="hidden min-w-0 flex-1 items-center gap-1 lg:flex lg:gap-2"

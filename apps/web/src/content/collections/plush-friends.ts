@@ -82,7 +82,7 @@ export const plushFriends: CollectionContent = {
   ],
   relatedCollectionSlugs: ["tiny-worlds", "learning-lab", "creative-studio"],
   metaDescription: {
-    en: "Meet Plush Friends — soft IPLAY companions for comfort and imaginative play.",
-    ar: "تعرّف على أصدقاء محشوة — رفاق IPLAY الناعمون للراحة واللعب التخيلي.",
+    en: "Meet Plush Friends — soft Velvet Kids companions for comfort and imaginative play.",
+    ar: "تعرّف على أصدقاء محشوة — رفاق Velvet Kids الناعمون للراحة واللعب التخيلي.",
   },
 };

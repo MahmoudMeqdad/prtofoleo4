@@ -10,7 +10,7 @@ interface PlaceholderImageProps {
 export function PlaceholderImage({
   width = 400,
   height = 300,
-  label = "IPLAY",
+  label = "Velvet Kids",
   className,
 }: PlaceholderImageProps) {
   return (

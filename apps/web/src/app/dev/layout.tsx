@@ -4,7 +4,7 @@ import { LocaleProvider } from "@/providers/LocaleProvider";
 import { getDictionary } from "@/i18n/dictionaries";
 
 export const metadata: Metadata = {
-  title: "Design System — IPLAY",
+  title: "Design System — Velvet Kids",
   description: "Internal design system review page",
   robots: {
     index: false,

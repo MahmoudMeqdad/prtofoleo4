@@ -28,7 +28,7 @@ export function HeroSection() {
             className="flex flex-col gap-6 text-primary-foreground"
           >
             <span className="inline-flex w-fit rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-medium backdrop-blur-sm">
-              منصة ألعاب أصلية — IPLAY
+              منصة ألعاب أصلية — Velvet Kids
             </span>
 
             <h1
@@ -76,7 +76,7 @@ export function HeroSection() {
               <PlaceholderImage
                 width="100%"
                 height={420}
-                label="Hero — IPLAY"
+                label="Hero — Velvet Kids"
                 className="w-full min-h-[280px] md:min-h-[420px] bg-white/10"
               />
             </div>

@@ -82,7 +82,7 @@ export const learningLab: CollectionContent = {
   ],
   relatedCollectionSlugs: ["creative-studio", "tiny-worlds", "plush-friends"],
   metaDescription: {
-    en: "Visit Learning Lab — IPLAY toys that grow curiosity through playful discovery.",
-    ar: "زر مختبر التعلم — ألعاب IPLAY التي تنمّي الفضول عبر الاكتشاف الممتع.",
+    en: "Visit Learning Lab — Velvet Kids toys that grow curiosity through playful discovery.",
+    ar: "زر مختبر التعلم — ألعاب Velvet Kids التي تنمّي الفضول عبر الاكتشاف الممتع.",
   },
 };

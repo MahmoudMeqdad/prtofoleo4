@@ -20,7 +20,7 @@ export default function DesignSystemPage() {
           </div>
 
           <Heading level="h1" align="center" className="mb-2">
-            IPLAY
+            Velvet Kids
           </Heading>
           <p className="mb-8 text-center text-muted-foreground">
             منصة ألعاب ومنتجات الأطفال

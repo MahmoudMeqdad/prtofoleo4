@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, Search, ShoppingBag, User } from "lucide-react";
 import clsx from "clsx";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Container } from "@/components/ui/Container";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
@@ -46,13 +47,7 @@ export function SiteHeader() {
         style={{ height: "var(--main-header-height)" }}
       >
         <Container className="flex h-full items-center justify-between gap-4">
-          <Link
-            href={homeHref}
-            className="shrink-0 text-2xl font-bold text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            IPLAY
-          </Link>
+          <BrandLogo href={homeHref} />
 
           <nav
             className="hidden items-center gap-1 lg:flex"
