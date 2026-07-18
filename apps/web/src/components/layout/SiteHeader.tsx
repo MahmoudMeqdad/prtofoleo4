@@ -12,18 +12,11 @@ import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { localizedPath } from "@/i18n/config";
 import { useDictionary, useLocale } from "@/providers/LocaleProvider";
 
-const NAV_KEYS = [
-  "collections",
-  "about",
-  "dropshipping",
-  "wholesale",
-] as const;
+const NAV_KEYS = ["collections", "about"] as const;
 
 const NAV_HREFS: Record<(typeof NAV_KEYS)[number], string> = {
   collections: "/collections",
   about: "/about",
-  dropshipping: "/dropshipping",
-  wholesale: "/wholesale",
 };
 
 export function SiteHeader() {

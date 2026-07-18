@@ -59,9 +59,7 @@ export function AboutView({ locale }: { locale: Locale }) {
             {c.values.map((value) => (
               <div key={value.title.en}>
                 <h3 className="text-xl font-semibold">{t(value.title, locale)}</h3>
-                <p className="mt-2 text-muted-foreground">
-                  {t(value.body, locale)}
-                </p>
+                <p className="mt-2 text-muted-foreground">{t(value.body, locale)}</p>
               </div>
             ))}
           </div>
@@ -91,9 +89,7 @@ export function AboutView({ locale }: { locale: Locale }) {
           <h2 className="font-[family-name:var(--font-display)] text-3xl font-bold">
             {t(c.ctaHeading, locale)}
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            {t(c.ctaBody, locale)}
-          </p>
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">{t(c.ctaBody, locale)}</p>
           <Link
             href={localizedPath(locale, "/contact")}
             className="mt-8 inline-flex min-h-11 items-center rounded-full bg-[var(--logo-red)] px-6 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"

@@ -13,11 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function DevLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function DevLayout({ children }: { children: React.ReactNode }) {
   const dictionary = await getDictionary("en");
 
   return (

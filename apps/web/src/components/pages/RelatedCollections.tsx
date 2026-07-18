@@ -34,10 +34,7 @@ export function RelatedCollections({
       <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
         {collections.map((collection, index) => {
           const name = t(collection.name, locale);
-          const href = localizedPath(
-            locale,
-            `/collections/${collection.slug}`,
-          );
+          const href = localizedPath(locale, `/collections/${collection.slug}`);
           return (
             <Reveal key={collection.id} delay={index * 0.06}>
               <Link

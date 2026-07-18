@@ -1,12 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  ArrowRight,
-  Facebook,
-  Instagram,
-  Linkedin,
-} from "lucide-react";
+import { ArrowRight, Facebook, Instagram, Linkedin } from "lucide-react";
 import { ComingSoonControl } from "@/components/pages/ComingSoonControl";
 import { localizedPath } from "@/i18n/config";
 import { useDictionary, useLocale } from "@/providers/LocaleProvider";
@@ -78,11 +73,7 @@ export function VisualFooter() {
     },
     {
       title: footer.followUs,
-      links: [
-        { label: footer.socialHandle },
-        { label: footer.linkedIn },
-        { label: footer.tiktok },
-      ],
+      links: [{ label: footer.socialHandle }, { label: footer.linkedIn }, { label: footer.tiktok }],
     },
     {
       title: footer.policies,
@@ -106,10 +97,7 @@ export function VisualFooter() {
       <div className="footer-container">
         <section className="footer-careers">
           <h2>{footer.heading}</h2>
-          <Link
-            href={localizedPath(locale, "/careers")}
-            className="footer-careers-button"
-          >
+          <Link href={localizedPath(locale, "/careers")} className="footer-careers-button">
             <span>{footer.careers}</span>
             <ArrowRight aria-hidden="true" />
           </Link>
@@ -122,10 +110,7 @@ export function VisualFooter() {
             <div key={column.title} className="footer-column">
               <h3>{column.title}</h3>
               {column.links.map((link) => (
-                <FooterTextLink
-                  key={`${column.title}-${link.label}`}
-                  link={link}
-                />
+                <FooterTextLink key={`${column.title}-${link.label}`} link={link} />
               ))}
             </div>
           ))}
@@ -135,11 +120,7 @@ export function VisualFooter() {
           <div className="footer-bottom-left">
             <div className="footer-social-icons">
               {socialIcons.map(({ label, Icon }) => (
-                <ComingSoonControl
-                  key={label}
-                  label={label}
-                  className="footer-social-icon"
-                >
+                <ComingSoonControl key={label} label={label} className="footer-social-icon">
                   <Icon aria-hidden="true" />
                 </ComingSoonControl>
               ))}

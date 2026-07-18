@@ -33,10 +33,7 @@ export function PageHero({
 
   return (
     <section
-      className={clsx(
-        "relative flex w-full items-end overflow-hidden",
-        minHeightClass,
-      )}
+      className={clsx("relative flex w-full items-end overflow-hidden", minHeightClass)}
       aria-label={title}
     >
       <div className="absolute inset-0">
@@ -46,10 +43,7 @@ export function PageHero({
           fill
           priority
           sizes="100vw"
-          className={clsx(
-            "object-cover",
-            mobileMedia ? "hidden md:block" : "block",
-          )}
+          className={clsx("object-cover", mobileMedia ? "hidden md:block" : "block")}
           style={{ objectPosition: focalPoint }}
           aria-hidden="true"
         />

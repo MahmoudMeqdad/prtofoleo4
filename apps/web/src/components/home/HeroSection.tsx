@@ -9,7 +9,10 @@ import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
 export function HeroSection() {
   return (
     <section className="relative -mt-[var(--header-height)] overflow-hidden bg-hero-gradient pb-16 pt-[calc(var(--header-height)+2rem)] md:pb-24 md:pt-[calc(var(--header-height)+3rem)]">
-      <div className="pointer-events-none absolute inset-0 hero-pattern opacity-40" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-0 hero-pattern opacity-40"
+        aria-hidden="true"
+      />
       <div
         className="pointer-events-none absolute -start-24 top-20 h-72 w-72 rounded-full bg-secondary/30 blur-3xl"
         aria-hidden="true"
@@ -41,17 +44,12 @@ export function HeroSection() {
             </h1>
 
             <p className="max-w-xl text-lg text-white/85 md:text-xl">
-              مجموعات أصلية بلمسة بصرية جريئة، تصاميم كبيرة، ومساحات واسعة —
-              تجربة تسوق ممتعة للعائلات.
+              مجموعات أصلية بلمسة بصرية جريئة، تصاميم كبيرة، ومساحات واسعة — تجربة تسوق ممتعة
+              للعائلات.
             </p>
 
             <div className="flex flex-wrap gap-3">
-              <Button
-                variant="secondary"
-                size="lg"
-                href="#collections"
-                className="gap-2 shadow-lg"
-              >
+              <Button variant="secondary" size="lg" href="#collections" className="gap-2 shadow-lg">
                 استكشف علاماتنا
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               </Button>

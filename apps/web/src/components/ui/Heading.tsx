@@ -24,12 +24,7 @@ const alignStyles: Record<Align, string> = {
   end: "text-end",
 };
 
-export function Heading({
-  level: Tag = "h2",
-  align = "start",
-  children,
-  className,
-}: HeadingProps) {
+export function Heading({ level: Tag = "h2", align = "start", children, className }: HeadingProps) {
   return (
     <Tag
       className={clsx(levelStyles[Tag], alignStyles[align], className)}

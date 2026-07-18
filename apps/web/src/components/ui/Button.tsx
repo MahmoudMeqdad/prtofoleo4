@@ -19,8 +19,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const variantStyles: Record<Variant, string> = {
   primary: "bg-primary text-primary-foreground hover:opacity-90",
   secondary: "bg-secondary text-secondary-foreground hover:opacity-90",
-  outline:
-    "border border-border bg-transparent hover:bg-surface text-foreground",
+  outline: "border border-border bg-transparent hover:bg-surface text-foreground",
   ghost: "bg-transparent hover:bg-surface text-foreground",
   danger: "bg-danger text-accent-foreground hover:opacity-90",
 };
@@ -64,12 +63,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <button
-        ref={ref}
-        className={classes}
-        disabled={disabled || loading}
-        {...props}
-      >
+      <button ref={ref} className={classes} disabled={disabled || loading} {...props}>
         {loading && <Loader2 className="h-4 w-4 animate-spin" />}
         {children}
       </button>

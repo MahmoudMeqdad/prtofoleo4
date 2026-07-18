@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CollectionDetailView } from "@/components/pages/CollectionDetailView";
-import {
-  getAllCollections,
-  getCollection,
-  getCollectionSlugs,
-} from "@/content/collections";
+import { getAllCollections, getCollection, getCollectionSlugs } from "@/content/collections";
 import { t } from "@/content/locale";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { buildPageMetadata } from "@/lib/metadata";
 
 export async function generateStaticParams() {
   const slugs = getCollectionSlugs();
-  return locales.flatMap((locale) =>
-    slugs.map((slug) => ({ locale, slug })),
-  );
+  return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
 }
 
 export async function generateMetadata({
@@ -27,8 +21,7 @@ export async function generateMetadata({
   const collection = getCollection(slug);
   if (!collection) return {};
   const locale = localeParam as Locale;
-  const titleSuffix =
-    locale === "ar" ? "علامات Velvet Kids" : "Velvet Kids Brands";
+  const titleSuffix = locale === "ar" ? "علامات Velvet Kids" : "Velvet Kids Brands";
   return buildPageMetadata({
     locale,
     path: `/collections/${slug}`,

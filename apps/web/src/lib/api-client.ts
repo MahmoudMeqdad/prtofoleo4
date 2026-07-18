@@ -17,10 +17,7 @@ async function handleResponse<T>(response: Response): Promise<T> {
   return response.json() as Promise<T>;
 }
 
-export async function apiGet<T>(
-  path: string,
-  options?: RequestInit,
-): Promise<T> {
+export async function apiGet<T>(path: string, options?: RequestInit): Promise<T> {
   const response = await fetch(`${API_URL}${path}`, {
     method: "GET",
     headers: {
@@ -31,11 +28,7 @@ export async function apiGet<T>(
   return handleResponse<T>(response);
 }
 
-export async function apiPost<T>(
-  path: string,
-  body: unknown,
-  options?: RequestInit,
-): Promise<T> {
+export async function apiPost<T>(path: string, body: unknown, options?: RequestInit): Promise<T> {
   const response = await fetch(`${API_URL}${path}`, {
     method: "POST",
     headers: {

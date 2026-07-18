@@ -25,9 +25,7 @@ export function CollectionMedia({ collection, priority = false }: CollectionMedi
   }, []);
 
   const mediaSrc =
-    isMobile && collection.mobileMedia
-      ? collection.mobileMedia
-      : collection.desktopMedia;
+    isMobile && collection.mobileMedia ? collection.mobileMedia : collection.desktopMedia;
 
   useEffect(() => {
     if (collection.mediaType !== "video" || reducedMotion) return;

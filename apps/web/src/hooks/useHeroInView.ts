@@ -12,9 +12,7 @@ export function useHeroInView(hero: HTMLElement | null): boolean {
     const update = () => {
       const rect = hero.getBoundingClientRect();
       const utilityBar = parseFloat(
-        getComputedStyle(document.documentElement).getPropertyValue(
-          "--utility-bar-height",
-        ) || "32",
+        getComputedStyle(document.documentElement).getPropertyValue("--utility-bar-height") || "32",
       );
       setOverHero(rect.bottom > utilityBar + 64);
     };

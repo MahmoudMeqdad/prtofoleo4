@@ -23,11 +23,7 @@ export async function generateMetadata({
   });
 }
 
-export default async function CollectionsPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function CollectionsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: localeParam } = await params;
   if (!isLocale(localeParam)) notFound();
   return <CollectionsIndexView locale={localeParam} />;

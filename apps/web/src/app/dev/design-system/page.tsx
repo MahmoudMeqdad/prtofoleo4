@@ -14,17 +14,14 @@ export default function DesignSystemPage() {
       <Section background="var(--color-surface)">
         <Container>
           <div className="mb-8 rounded-lg border border-warning/30 bg-warning/5 p-4 text-sm text-warning">
-            <strong>مراجعة داخلية:</strong> نظام التصميم — الصفحة الرئيسية
-            العامة موجودة على <code className="mx-1">/</code>. هذه الصفحة غير
-            مفهرسة.
+            <strong>مراجعة داخلية:</strong> نظام التصميم — الصفحة الرئيسية العامة موجودة على{" "}
+            <code className="mx-1">/</code>. هذه الصفحة غير مفهرسة.
           </div>
 
           <Heading level="h1" align="center" className="mb-2">
             Velvet Kids
           </Heading>
-          <p className="mb-8 text-center text-muted-foreground">
-            منصة ألعاب ومنتجات الأطفال
-          </p>
+          <p className="mb-8 text-center text-muted-foreground">منصة ألعاب ومنتجات الأطفال</p>
 
           <ConnectionStatus />
         </Container>
@@ -48,17 +45,12 @@ export default function DesignSystemPage() {
               { name: "Danger", color: "var(--color-danger)" },
               { name: "Muted", color: "var(--color-muted-foreground)" },
             ].map((swatch) => (
-              <div
-                key={swatch.name}
-                className="flex flex-col items-center gap-2"
-              >
+              <div key={swatch.name} className="flex flex-col items-center gap-2">
                 <div
                   className="h-16 w-full rounded-lg border border-border"
                   style={{ backgroundColor: swatch.color }}
                 />
-                <span className="text-xs text-muted-foreground">
-                  {swatch.name}
-                </span>
+                <span className="text-xs text-muted-foreground">{swatch.name}</span>
               </div>
             ))}
           </div>

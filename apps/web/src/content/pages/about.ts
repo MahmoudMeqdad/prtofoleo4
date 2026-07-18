@@ -26,8 +26,8 @@ export const aboutContent = {
   },
   visionHeading: { en: "Vision", ar: "رؤيتنا" },
   visionBody: {
-    en: "A trusted Velvet Kids home for families, marketers, and wholesale partners who want quality play with a clear original identity.",
-    ar: "أن نكون بيتاً موثوقاً لـ Velvet Kids للعائلات والمسوّقين وتجار الجملة الذين يريدون لعباً بجودة وهوية أصلية واضحة.",
+    en: "A trusted Velvet Kids home for families who want quality play with a clear original identity.",
+    ar: "أن نكون بيتاً موثوقاً لـ Velvet Kids للعائلات التي تريد لعباً بجودة وهوية أصلية واضحة.",
   },
   valuesHeading: { en: "Values", ar: "قيمنا" },
   values: [
@@ -69,12 +69,12 @@ export const aboutContent = {
     ar: "كل مجموعة تبدأ من شعور الطفل أثناء اللعب — الفضول والراحة والطاقة والفخر بصنع شيء يخصّه.",
   },
   partnersHeading: {
-    en: "For Marketers and Wholesale Partners",
-    ar: "للمسوّقين وتجار الجملة",
+    en: "For Partners",
+    ar: "للشركاء",
   },
   partnersBody: {
-    en: "Velvet Kids is preparing pathways for marketers and wholesale traders. Informational pages are available today; account registration will open later.",
-    ar: "تستعد Velvet Kids لمسارات للمسوّقين وتجار الجملة. الصفحات التعريفية متاحة اليوم، وسيُفتح تسجيل الحسابات لاحقاً.",
+    en: "Velvet Kids welcomes collaboration with partners who share our focus on quality play and childhood. Reach out if you would like to work with us.",
+    ar: "ترحب Velvet Kids بالشراكة مع من يشاركوننا التركيز على جودة اللعب والطفولة. تواصل معنا إن رغبت بالعمل معنا.",
   },
   ctaHeading: { en: "Want to talk?", ar: "هل تريد التحدث معنا؟" },
   ctaBody: {

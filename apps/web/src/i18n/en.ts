@@ -1,8 +1,7 @@
 export const en = {
   metadata: {
     title: "Velvet Kids | Toys, Play and Imagination",
-    description:
-      "Discover playful toys and products created for children, families, marketers and wholesale partners.",
+    description: "Discover playful toys and products created for children and families.",
   },
   utility: {
     message: "Play Reimagined",
@@ -10,8 +9,6 @@ export const en = {
   navigation: {
     collections: "Our Brands",
     about: "About",
-    dropshipping: "Dropshipping",
-    wholesale: "Wholesale",
     contact: "Contact Us",
     search: "Search",
     signIn: "Sign In",
@@ -112,7 +109,6 @@ export const en = {
     explore: "Quick Links",
     company: "Our Company",
     forMarketers: "For Marketers",
-    forWholesale: "For Wholesale Traders",
     contactUs: "Contact",
     legal: "Policies",
     returnsPolicy: "Cookie Policy",

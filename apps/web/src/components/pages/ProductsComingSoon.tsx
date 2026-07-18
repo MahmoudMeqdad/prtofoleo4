@@ -18,9 +18,7 @@ export function ProductsComingSoon({ heading, body }: ProductsComingSoonProps) {
         <h2 className="mt-4 font-[family-name:var(--font-display)] text-3xl font-bold md:text-4xl">
           {heading}
         </h2>
-        <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-          {body}
-        </p>
+        <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">{body}</p>
       </Reveal>
     </section>
   );

@@ -10,11 +10,7 @@ interface ComingSoonControlProps {
 }
 
 /** Accessible control that opens a coming-soon dialog instead of navigating. */
-export function ComingSoonControl({
-  label,
-  className,
-  children,
-}: ComingSoonControlProps) {
+export function ComingSoonControl({ label, className, children }: ComingSoonControlProps) {
   const dictionary = useDictionary();
   const [open, setOpen] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -29,12 +25,7 @@ export function ComingSoonControl({
 
   return (
     <>
-      <button
-        type="button"
-        aria-label={label}
-        className={className}
-        onClick={() => setOpen(true)}
-      >
+      <button type="button" aria-label={label} className={className} onClick={() => setOpen(true)}>
         {children}
       </button>
       <dialog
@@ -49,9 +40,7 @@ export function ComingSoonControl({
         <h2 id={titleId} className="text-lg font-bold">
           {dictionary.comingSoon.title}
         </h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          {dictionary.comingSoon.description}
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">{dictionary.comingSoon.description}</p>
         <button
           type="button"
           className="mt-5 inline-flex min-h-10 items-center rounded-full bg-foreground px-4 text-sm font-medium text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"

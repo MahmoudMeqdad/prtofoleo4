@@ -7,10 +7,7 @@ import { outdoorFun } from "./outdoor-fun";
 import type { CollectionFeature } from "./showcase-types";
 
 /** Maps Outdoor Fun into a ZURU product-range style showcase. */
-export function getOutdoorFunShowcase(
-  locale: Locale,
-  dictionary: Dictionary,
-): CollectionFeature[] {
+export function getOutdoorFunShowcase(locale: Locale, dictionary: Dictionary): CollectionFeature[] {
   const c = outdoorFun;
   const seeMore = dictionary.collections["outdoor-fun"].cta;
   const related = getRelatedCollections(c);
@@ -22,11 +19,7 @@ export function getOutdoorFunShowcase(
       : localizedPath(locale, "/collections");
   };
 
-  const alignments = [
-    "bottom-left",
-    "bottom-right",
-    "center-left",
-  ] as const;
+  const alignments = ["bottom-left", "bottom-right", "center-left"] as const;
 
   const features: CollectionFeature[] = [
     {

@@ -19,11 +19,7 @@ export function HomepageShell() {
         <VideoHero />
         <EditorialIntro />
         {HOMEPAGE_COLLECTIONS.map((collection, index) => (
-          <CollectionShowcase
-            key={collection.id}
-            collection={collection}
-            index={index}
-          />
+          <CollectionShowcase key={collection.id} collection={collection} index={index} />
         ))}
         <VisualFooter />
       </main>

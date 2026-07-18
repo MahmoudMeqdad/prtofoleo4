@@ -27,16 +27,6 @@ const shots = [
     size: { width: 390, height: 844 },
   },
   {
-    file: "en-dropshipping-desktop.png",
-    url: `${BASE}/en/dropshipping`,
-    size: { width: 1440, height: 1000 },
-  },
-  {
-    file: "en-wholesale-desktop.png",
-    url: `${BASE}/en/wholesale`,
-    size: { width: 1440, height: 1000 },
-  },
-  {
     file: "en-contact-mobile.png",
     url: `${BASE}/en/contact`,
     size: { width: 390, height: 844 },

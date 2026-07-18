@@ -15,10 +15,7 @@ export function getLocaleDirection(locale: Locale): "ltr" | "rtl" {
 }
 
 /** Build a locale-prefixed path, preserving the path without an existing locale prefix. */
-export function localizedPath(
-  locale: Locale,
-  path: string = "",
-): string {
+export function localizedPath(locale: Locale, path: string = ""): string {
   const normalized = path.startsWith("/") ? path : path ? `/${path}` : "";
   const segments = normalized.split("/").filter(Boolean);
 

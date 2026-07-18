@@ -18,16 +18,10 @@ export function MegaMenus({ activeMenu, onNavigate }: MegaMenusProps) {
   const locale = useLocale();
   const dictionary = useDictionary();
   const collections = HOMEPAGE_COLLECTIONS;
-  const featured =
-    collections.find((item) => item.id === "creative-studio") ?? collections[0];
-  const featuredCopy =
-    dictionary.collections[featured.id as keyof typeof dictionary.collections];
+  const featured = collections.find((item) => item.id === "creative-studio") ?? collections[0];
+  const featuredCopy = dictionary.collections[featured.id as keyof typeof dictionary.collections];
 
-  const columns = [
-    collections.slice(0, 2),
-    collections.slice(2, 4),
-    collections.slice(4, 6),
-  ];
+  const columns = [collections.slice(0, 2), collections.slice(2, 4), collections.slice(4, 6)];
 
   const aboutLinks = [
     {
@@ -45,10 +39,7 @@ export function MegaMenus({ activeMenu, onNavigate }: MegaMenusProps) {
   ];
 
   return (
-    <div
-      className={clsx("mega-menu", activeMenu && "mega-menu--open")}
-      aria-hidden={!activeMenu}
-    >
+    <div className={clsx("mega-menu", activeMenu && "mega-menu--open")} aria-hidden={!activeMenu}>
       <div
         id="mega-menu-collections"
         className={clsx(
@@ -64,16 +55,11 @@ export function MegaMenus({ activeMenu, onNavigate }: MegaMenusProps) {
               <ul key={columnIndex} className="collections-mega-menu__column">
                 {column.map((collection) => {
                   const copy =
-                    dictionary.collections[
-                      collection.id as keyof typeof dictionary.collections
-                    ];
+                    dictionary.collections[collection.id as keyof typeof dictionary.collections];
                   return (
                     <li key={collection.id}>
                       <Link
-                        href={localizedPath(
-                          locale,
-                          `/collections/${collection.slug}`,
-                        )}
+                        href={localizedPath(locale, `/collections/${collection.slug}`)}
                         className="collections-mega-menu__link"
                         onClick={onNavigate}
                       >
@@ -100,15 +86,10 @@ export function MegaMenus({ activeMenu, onNavigate }: MegaMenusProps) {
               priority={false}
             />
             <div className="collections-mega-menu__feature-overlay">
-              <p className="collections-mega-menu__feature-title">
-                {featuredCopy.name}
-              </p>
+              <p className="collections-mega-menu__feature-title">{featuredCopy.name}</p>
               <span className="collections-mega-menu__feature-cta">
                 {dictionary.pages.exploreCollection}
-                <ArrowRight
-                  className="collections-mega-menu__feature-arrow"
-                  aria-hidden="true"
-                />
+                <ArrowRight className="collections-mega-menu__feature-arrow" aria-hidden="true" />
               </span>
             </div>
           </Link>

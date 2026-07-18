@@ -2,11 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import clsx from "clsx";
-import {
-  localeCookieName,
-  swapLocaleInPath,
-  type Locale,
-} from "@/i18n/config";
+import { localeCookieName, swapLocaleInPath, type Locale } from "@/i18n/config";
 import { useDictionary, useLocale } from "@/providers/LocaleProvider";
 
 interface LanguageSwitcherProps {
@@ -18,10 +14,7 @@ function setLocaleCookie(locale: Locale) {
   document.cookie = `${localeCookieName}=${locale}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
 }
 
-export function LanguageSwitcher({
-  variant = "header",
-  onSwitch,
-}: LanguageSwitcherProps) {
+export function LanguageSwitcher({ variant = "header", onSwitch }: LanguageSwitcherProps) {
   const locale = useLocale();
   const dictionary = useDictionary();
   const pathname = usePathname();
@@ -59,9 +52,7 @@ export function LanguageSwitcher({
                   : "text-gray-500 hover:bg-surface hover:text-gray-900",
               )}
             >
-              {code === "en"
-                ? dictionary.language.english
-                : dictionary.language.arabic}
+              {code === "en" ? dictionary.language.english : dictionary.language.arabic}
             </button>
           ))}
         </div>
@@ -82,15 +73,11 @@ export function LanguageSwitcher({
           onClick={() => switchTo(code)}
           aria-current={locale === code ? "true" : undefined}
           aria-label={
-            code === "en"
-              ? dictionary.language.switchToEnglish
-              : dictionary.language.switchToArabic
+            code === "en" ? dictionary.language.switchToEnglish : dictionary.language.switchToArabic
           }
           className={clsx(
             "min-h-9 min-w-9 rounded px-2 text-xs font-semibold tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
-            locale === code
-              ? "bg-surface text-foreground"
-              : "text-gray-500 hover:text-gray-900",
+            locale === code ? "bg-surface text-foreground" : "text-gray-500 hover:text-gray-900",
           )}
         >
           {code === "en" ? dictionary.language.en : dictionary.language.ar}

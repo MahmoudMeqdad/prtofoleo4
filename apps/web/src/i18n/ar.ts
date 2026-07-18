@@ -1,8 +1,7 @@
 export const ar = {
   metadata: {
     title: "Velvet Kids | الألعاب والمرح والخيال",
-    description:
-      "اكتشف مجموعة من الألعاب والمنتجات المصممة للأطفال والعائلات والمسوّقين وتجار الجملة.",
+    description: "اكتشف مجموعة من الألعاب والمنتجات المصممة للأطفال والعائلات.",
   },
   utility: {
     message: "اللعب بإبداع جديد",
@@ -10,8 +9,6 @@ export const ar = {
   navigation: {
     collections: "علاماتنا",
     about: "من نحن",
-    dropshipping: "الدروب شيبنج",
-    wholesale: "الجملة",
     contact: "اتصل بنا",
     search: "البحث",
     signIn: "تسجيل الدخول",
@@ -111,7 +108,6 @@ export const ar = {
     explore: "روابط سريعة",
     company: "شركتنا",
     forMarketers: "للمسوّقين",
-    forWholesale: "لتجار الجملة",
     contactUs: "تواصل",
     legal: "السياسات",
     returnsPolicy: "سياسة ملفات تعريف الارتباط",
@@ -130,8 +126,7 @@ export const ar = {
   },
   comingSoon: {
     title: "قريباً",
-    description:
-      "هذه الميزة غير متاحة بعد. سيُفعَّل البحث وتسجيل الدخول والسلة في مرحلة لاحقة.",
+    description: "هذه الميزة غير متاحة بعد. سيُفعَّل البحث وتسجيل الدخول والسلة في مرحلة لاحقة.",
     close: "إغلاق",
   },
   pages: {

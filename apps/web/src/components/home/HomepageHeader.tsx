@@ -10,30 +10,20 @@ import { MobileMenu } from "@/components/layout/MobileMenu";
 import { MegaMenus } from "@/components/home/MegaMenus";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { ComingSoonControl } from "@/components/pages/ComingSoonControl";
+import { ProductSearchDialog } from "@/components/search/ProductSearchDialog";
+import { getCartItemCount, useCartStore } from "@/store/cart-store";
 import { BRAND_NAME } from "@/config/brand";
-import {
-  localeCookieName,
-  localizedPath,
-  swapLocaleInPath,
-  type Locale,
-} from "@/i18n/config";
+import { localeCookieName, localizedPath, swapLocaleInPath, type Locale } from "@/i18n/config";
 import { useDictionary, useLocale } from "@/providers/LocaleProvider";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useMegaMenu, type MegaMenuId } from "@/hooks/useMegaMenu";
 import type { HeaderMode } from "@/hooks/useHeaderMode";
 
-const NAV_KEYS = [
-  "collections",
-  "about",
-  "dropshipping",
-  "wholesale",
-] as const;
+const NAV_KEYS = ["collections", "about"] as const;
 
 const NAV_HREFS: Record<(typeof NAV_KEYS)[number], string> = {
   collections: "/collections",
   about: "/about",
-  dropshipping: "/dropshipping",
-  wholesale: "/wholesale",
 };
 
 const MEGA_MENU_KEYS: MegaMenuId[] = ["collections", "about"];
@@ -75,8 +65,7 @@ function LanguageDropdown({ onSwitch }: { onSwitch?: () => void }) {
     onSwitch?.();
   };
 
-  const currentLabel =
-    locale === "en" ? dictionary.language.english : dictionary.language.arabic;
+  const currentLabel = locale === "en" ? dictionary.language.english : dictionary.language.arabic;
 
   return (
     <div ref={rootRef} className="relative">
@@ -113,14 +102,10 @@ function LanguageDropdown({ onSwitch }: { onSwitch?: () => void }) {
                 }
                 className={clsx(
                   "block w-full px-3 py-2 text-start text-xs transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset",
-                  locale === code
-                    ? "font-semibold text-foreground"
-                    : "text-gray-500",
+                  locale === code ? "font-semibold text-foreground" : "text-gray-500",
                 )}
               >
-                {code === "en"
-                  ? dictionary.language.english
-                  : dictionary.language.arabic}
+                {code === "en" ? dictionary.language.english : dictionary.language.arabic}
               </button>
             </li>
           ))}
@@ -132,10 +117,15 @@ function LanguageDropdown({ onSwitch }: { onSwitch?: () => void }) {
 
 export function HomepageHeader({ mode }: HomepageHeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const locale = useLocale();
   const dictionary = useDictionary();
   const pathname = usePathname();
   const reducedMotion = useReducedMotion();
+  const cartItems = useCartStore((state) => state.items);
+  const cartHydrated = useCartStore((state) => state.hydrated);
+  const setCartDrawerOpen = useCartStore((state) => state.setDrawerOpen);
+  const cartCount = cartHydrated ? getCartItemCount(cartItems) : 0;
   const {
     activeMenu,
     isOpen: megaOpen,
@@ -144,9 +134,7 @@ export function HomepageHeader({ mode }: HomepageHeaderProps) {
     cancelClose,
     closeMenu,
   } = useMegaMenu();
-  const triggerRefs = useRef<Partial<Record<MegaMenuId, HTMLButtonElement | null>>>(
-    {},
-  );
+  const triggerRefs = useRef<Partial<Record<MegaMenuId, HTMLButtonElement | null>>>({});
 
   const overHero = mode === "top-over-hero";
 
@@ -240,9 +228,7 @@ export function HomepageHeader({ mode }: HomepageHeaderProps) {
                       aria-controls={`mega-menu-${megaId}`}
                       onMouseEnter={() => openMenu(megaId)}
                       onFocus={() => openMenu(megaId, true)}
-                      onClick={() =>
-                        isMenuActive ? closeMenu() : openMenu(megaId, true)
-                      }
+                      onClick={() => (isMenuActive ? closeMenu() : openMenu(megaId, true))}
                     >
                       <span>{link.label}</span>
                       <ChevronDown
@@ -268,13 +254,15 @@ export function HomepageHeader({ mode }: HomepageHeaderProps) {
             </nav>
 
             <div className="ms-auto flex shrink-0 items-center gap-1 sm:gap-2">
-              <ComingSoonControl
-                label={dictionary.navigation.search}
+              <button
+                type="button"
+                aria-label={dictionary.navigation.search}
                 className="homepage-search-pill focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                onClick={() => setSearchOpen(true)}
               >
                 <span>{dictionary.navigation.search}</span>
                 <Search className="h-4 w-4 shrink-0" aria-hidden="true" />
-              </ComingSoonControl>
+              </button>
 
               <ComingSoonControl
                 label={dictionary.navigation.signIn}
@@ -283,12 +271,19 @@ export function HomepageHeader({ mode }: HomepageHeaderProps) {
                 <User className="h-5 w-5" aria-hidden="true" />
               </ComingSoonControl>
 
-              <ComingSoonControl
-                label={dictionary.navigation.cart}
-                className="homepage-header-action homepage-header-action--icon"
+              <button
+                type="button"
+                aria-label={dictionary.navigation.cart}
+                className="homepage-header-action homepage-header-action--icon relative"
+                onClick={() => setCartDrawerOpen(true)}
               >
                 <ShoppingBag className="h-5 w-5" aria-hidden="true" />
-              </ComingSoonControl>
+                {cartCount > 0 && (
+                  <span className="absolute -end-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
 
               <button
                 type="button"
@@ -313,6 +308,7 @@ export function HomepageHeader({ mode }: HomepageHeaderProps) {
         links={navLinks}
         homeHref={homeHref}
       />
+      <ProductSearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }

@@ -10,12 +10,7 @@ interface BrandLogoProps {
   onClick?: () => void;
 }
 
-export function BrandLogo({
-  href,
-  className,
-  priority = false,
-  onClick,
-}: BrandLogoProps) {
+export function BrandLogo({ href, className, priority = false, onClick }: BrandLogoProps) {
   return (
     <Link
       href={href}

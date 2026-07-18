@@ -36,12 +36,8 @@ export function ContactView({ locale }: { locale: Locale }) {
           <Reveal>
             <div className="space-y-8">
               <div>
-                <h2 className="text-xl font-semibold">
-                  {t(c.whatsappLabel, locale)}
-                </h2>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {t(c.whatsappHint, locale)}
-                </p>
+                <h2 className="text-xl font-semibold">{t(c.whatsappLabel, locale)}</h2>
+                <p className="mt-2 text-sm text-muted-foreground">{t(c.whatsappHint, locale)}</p>
                 {whatsappHref ? (
                   <a
                     href={whatsappHref}
@@ -56,9 +52,7 @@ export function ContactView({ locale }: { locale: Locale }) {
                 )}
               </div>
               <div>
-                <h2 className="text-xl font-semibold">
-                  {t(c.emailLabel, locale)}
-                </h2>
+                <h2 className="text-xl font-semibold">{t(c.emailLabel, locale)}</h2>
                 <a
                   href={`mailto:${t(c.emailValue, locale)}`}
                   className="mt-3 inline-flex text-primary underline-offset-2 hover:underline"
@@ -67,12 +61,8 @@ export function ContactView({ locale }: { locale: Locale }) {
                 </a>
               </div>
               <div>
-                <h2 className="text-xl font-semibold">
-                  {t(c.socialHeading, locale)}
-                </h2>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {t(c.socialHint, locale)}
-                </p>
+                <h2 className="text-xl font-semibold">{t(c.socialHeading, locale)}</h2>
+                <p className="mt-2 text-sm text-muted-foreground">{t(c.socialHint, locale)}</p>
               </div>
             </div>
           </Reveal>

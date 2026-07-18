@@ -89,9 +89,7 @@ export function CollectionsIndexView({ locale }: { locale: Locale }) {
                     >
                       {name}
                     </h2>
-                    <p className="mt-3 max-w-xl text-base text-white/90 md:text-lg">
-                      {short}
-                    </p>
+                    <p className="mt-3 max-w-xl text-base text-white/90 md:text-lg">{short}</p>
                     <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white">
                       {t(c.exploreCta, locale)}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />

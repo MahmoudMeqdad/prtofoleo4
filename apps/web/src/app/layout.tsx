@@ -6,15 +6,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: "/media/brand/velvet-kids-logo.png",
+    apple: "/media/brand/velvet-kids-logo-transparent.png",
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"

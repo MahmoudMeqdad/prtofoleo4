@@ -15,8 +15,6 @@ const NAV_LINKS = [
   { href: "/", label: "الرئيسية" },
   { href: "/collections", label: "علاماتنا" },
   { href: "/products", label: "المنتجات" },
-  { href: "/dropshipping", label: "دروب شيبينج" },
-  { href: "/wholesale", label: "الجملة" },
   { href: "/about", label: "حول" },
   { href: "/contact", label: "اتصل بنا" },
 ];
@@ -48,9 +46,7 @@ export function Header() {
               href={link.href}
               className={clsx(
                 "rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
-                heroMode
-                  ? "text-white/90 hover:bg-white/10 hover:text-white"
-                  : "hover:bg-surface",
+                heroMode ? "text-white/90 hover:bg-white/10 hover:text-white" : "hover:bg-surface",
               )}
             >
               {link.label}

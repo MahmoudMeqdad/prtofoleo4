@@ -3,8 +3,7 @@ import type { Locale } from "@/i18n/config";
 import { locales } from "@/i18n/config";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://iplay-web.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://iplay-web.vercel.app";
 
 export function getSiteUrl(): string {
   return SITE_URL;
@@ -26,17 +25,10 @@ export function buildPageMetadata({
   const normalized = path.startsWith("/") ? path : `/${path}`;
   const canonicalPath = `/${locale}${normalized === "/" ? "" : normalized}`;
   const canonical = `${SITE_URL}${canonicalPath}`;
-  const ogImage = image
-    ? image.startsWith("http")
-      ? image
-      : `${SITE_URL}${image}`
-    : undefined;
+  const ogImage = image ? (image.startsWith("http") ? image : `${SITE_URL}${image}`) : undefined;
 
   const languages = Object.fromEntries(
-    locales.map((code) => [
-      code,
-      `${SITE_URL}/${code}${normalized === "/" ? "" : normalized}`,
-    ]),
+    locales.map((code) => [code, `${SITE_URL}/${code}${normalized === "/" ? "" : normalized}`]),
   ) as Record<string, string>;
 
   return {

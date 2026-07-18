@@ -26,12 +26,7 @@ const linkVariants = {
 
 const CLOSED_OFFSET = "100%";
 
-export function MobileMenu({
-  isOpen,
-  onClose,
-  links,
-  homeHref,
-}: MobileMenuProps) {
+export function MobileMenu({ isOpen, onClose, links, homeHref }: MobileMenuProps) {
   const dictionary = useDictionary();
 
   useEffect(() => {

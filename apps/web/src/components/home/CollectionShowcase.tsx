@@ -33,17 +33,11 @@ function CtaArrow({ className }: { className?: string }) {
   );
 }
 
-export function CollectionShowcase({
-  collection,
-  index,
-}: CollectionShowcaseProps) {
+export function CollectionShowcase({ collection, index }: CollectionShowcaseProps) {
   const reducedMotion = useReducedMotion();
   const locale = useLocale();
   const dictionary = useDictionary();
-  const copy =
-    dictionary.collections[
-      collection.id as keyof typeof dictionary.collections
-    ];
+  const copy = dictionary.collections[collection.id as keyof typeof dictionary.collections];
 
   const sectionMotion = reducedMotion
     ? {}

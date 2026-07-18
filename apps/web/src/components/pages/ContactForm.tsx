@@ -52,10 +52,7 @@ export function ContactForm({ locale, whatsappHref }: ContactFormProps) {
         />
       </div>
       <div>
-        <label
-          htmlFor="contact-email"
-          className="mb-2 block text-sm font-medium"
-        >
+        <label htmlFor="contact-email" className="mb-2 block text-sm font-medium">
           {t(c.emailFieldLabel, locale)}
         </label>
         <input
@@ -69,10 +66,7 @@ export function ContactForm({ locale, whatsappHref }: ContactFormProps) {
         />
       </div>
       <div>
-        <label
-          htmlFor="contact-message"
-          className="mb-2 block text-sm font-medium"
-        >
+        <label htmlFor="contact-message" className="mb-2 block text-sm font-medium">
           {t(c.messageLabel, locale)}
         </label>
         <textarea
@@ -91,7 +85,10 @@ export function ContactForm({ locale, whatsappHref }: ContactFormProps) {
         </p>
       ) : null}
       {notice ? (
-        <p className="rounded-md border border-border bg-surface px-4 py-3 text-sm text-foreground" role="status">
+        <p
+          className="rounded-md border border-border bg-surface px-4 py-3 text-sm text-foreground"
+          role="status"
+        >
           {notice}{" "}
           {whatsappHref ? (
             <a

@@ -33,17 +33,12 @@ export function getCollectionSlugs(): CollectionSlug[] {
   return COLLECTIONS.map((item) => item.slug as CollectionSlug);
 }
 
-export function getRelatedCollections(
-  collection: CollectionContent,
-): CollectionContent[] {
+export function getRelatedCollections(collection: CollectionContent): CollectionContent[] {
   return collection.relatedCollectionSlugs
     .map((slug) => getCollection(slug))
     .filter((item): item is CollectionContent => Boolean(item));
 }
 
-export function getCollectionName(
-  collection: CollectionContent,
-  locale: Locale,
-): string {
+export function getCollectionName(collection: CollectionContent, locale: Locale): string {
   return t(collection.name, locale);
 }

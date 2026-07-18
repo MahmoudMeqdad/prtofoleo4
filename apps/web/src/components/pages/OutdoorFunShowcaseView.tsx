@@ -7,6 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { PublicPageShell } from "@/components/layout/PublicPageShell";
 import { outdoorFun } from "@/content/collections/outdoor-fun";
+import { getProductForShowcase } from "@/content/products";
 import type { CollectionContent, CollectionStorySection } from "@/content/collections";
 import { t } from "@/content/locale";
 import { localizedPath, type Locale } from "@/i18n/config";
@@ -46,6 +47,10 @@ export function CollectionProductShowcaseView({
       ? collection.sections
       : [...collection.sections, overviewProduct];
   const active = products[activeIndex];
+  const activeProduct = getProductForShowcase(
+    products.map((section) => section.id),
+    active.id,
+  );
   const collectionName = t(collection.name, locale);
   const displayName = collectionName.toLocaleUpperCase(locale);
   const titleId = `${collection.slug}-title`;
@@ -174,8 +179,23 @@ export function CollectionProductShowcaseView({
               <p className={styles.eyebrow}>{displayName}</p>
               <h2 className={styles.productTitle}>{t(active.title, locale)}</h2>
               <p className={styles.description}>{t(active.description, locale)}</p>
-              <Link href={localizedPath(locale, "/contact")} className={styles.cta}>
-                <span>Where To Buy</span>
+              <Link
+                href={
+                  activeProduct
+                    ? localizedPath(locale, `/products/${activeProduct.slug}`)
+                    : localizedPath(locale, "/contact")
+                }
+                className={styles.cta}
+              >
+                <span>
+                  {activeProduct
+                    ? locale === "ar"
+                      ? "عرض المنتج"
+                      : "View Product"
+                    : locale === "ar"
+                      ? "أين تشتري"
+                      : "Where To Buy"}
+                </span>
                 <ArrowRight aria-hidden="true" />
               </Link>
             </motion.div>

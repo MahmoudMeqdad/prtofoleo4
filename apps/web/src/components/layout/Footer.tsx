@@ -10,8 +10,6 @@ const MAIN_LINKS = [
 ];
 
 const SERVICE_LINKS = [
-  { href: "/dropshipping", label: "دروب شيبينج" },
-  { href: "/wholesale", label: "الجملة" },
   { href: "/about", label: "حول" },
   { href: "/contact", label: "اتصل بنا" },
 ];
@@ -30,8 +28,7 @@ export function Footer() {
           <div className="flex flex-col gap-3">
             <BrandLogo href="/" />
             <p className="text-sm text-muted-foreground">
-              منصة متكاملة لألعاب ومنتجات الأطفال. نقدم أفضل المنتجات بأسعار
-              تنافسية مع خدمات دروب شيبينج والجملة.
+              منصة متكاملة لألعاب ومنتجات الأطفال. نقدم أفضل المنتجات بأسعار تنافسية.
             </p>
           </div>
 
@@ -79,12 +76,8 @@ export function Footer() {
               ))}
             </div>
             <div className="mt-4 flex flex-col gap-2">
-              <p className="text-xs text-muted-foreground">
-                واتساب: +966500000000
-              </p>
-              <p className="text-xs text-muted-foreground">
-                بريد: {BRAND_EMAIL}
-              </p>
+              <p className="text-xs text-muted-foreground">واتساب: +966500000000</p>
+              <p className="text-xs text-muted-foreground">بريد: {BRAND_EMAIL}</p>
             </div>
           </div>
         </div>

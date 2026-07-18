@@ -12,9 +12,7 @@ import { getDictionary } from "@/i18n/dictionaries";
 export default async function NotFound() {
   const cookieStore = await cookies();
   const cookieLocale = cookieStore.get(localeCookieName)?.value;
-  const locale: Locale = cookieLocale && isLocale(cookieLocale)
-    ? cookieLocale
-    : defaultLocale;
+  const locale: Locale = cookieLocale && isLocale(cookieLocale) ? cookieLocale : defaultLocale;
   const dictionary = await getDictionary(locale);
   const isArabic = locale === "ar";
 
@@ -24,9 +22,7 @@ export default async function NotFound() {
       dir={isArabic ? "rtl" : "ltr"}
       className="flex min-h-screen flex-col items-center justify-center bg-background px-6 py-24 text-foreground"
     >
-      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-        404
-      </p>
+      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">404</p>
       <h1 className="mt-4 max-w-xl text-center font-[family-name:var(--font-display)] text-3xl font-bold md:text-4xl">
         {dictionary.errors.notFoundTitle}
       </h1>

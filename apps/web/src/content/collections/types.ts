@@ -5,12 +5,7 @@ export type LocalizedString = {
 
 export interface CollectionStorySection {
   id: string;
-  layout:
-    | "media-left"
-    | "media-right"
-    | "full-media"
-    | "centered"
-    | "editorial";
+  layout: "media-left" | "media-right" | "full-media" | "centered" | "editorial";
   title: LocalizedString;
   description: LocalizedString;
   media: {

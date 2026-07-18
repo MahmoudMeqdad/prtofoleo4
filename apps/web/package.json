@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"Automated tests are not configured yet. See docs/TESTING-STRATEGY.md.\"",
+    "test": "node --experimental-strip-types --test src/store/cart-types.test.ts src/lib/whatsapp-order.test.ts",
     "clean": "rm -rf .next .turbo node_modules"
   },
   "dependencies": {

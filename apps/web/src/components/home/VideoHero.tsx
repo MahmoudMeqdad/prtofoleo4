@@ -97,10 +97,7 @@ export function VideoHero() {
         )}
       </motion.div>
 
-      <div
-        className="pointer-events-none absolute inset-0 bg-black/35"
-        aria-hidden="true"
-      />
+      <div className="pointer-events-none absolute inset-0 bg-black/35" aria-hidden="true" />
 
       <motion.div
         className="absolute inset-0 z-10 flex items-center justify-center"
@@ -129,9 +126,7 @@ export function VideoHero() {
         <motion.div
           animate={reducedMotion ? undefined : { y: [0, 6, 0] }}
           transition={
-            reducedMotion
-              ? undefined
-              : { repeat: Infinity, duration: 2, ease: "easeInOut" }
+            reducedMotion ? undefined : { repeat: Infinity, duration: 2, ease: "easeInOut" }
           }
           className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-black/20 text-white backdrop-blur-sm"
           aria-label={dictionary.hero.scroll}

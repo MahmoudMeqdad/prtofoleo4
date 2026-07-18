@@ -25,7 +25,10 @@ export function CollectionCard({ collection, index }: CollectionCardProps) {
         style={{ backgroundColor: collection.accent }}
         aria-hidden="true"
       />
-      <Link href="/collections" className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-xl">
+      <Link
+        href="/collections"
+        className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-xl"
+      >
         <PlaceholderImage
           width="100%"
           height={220}
