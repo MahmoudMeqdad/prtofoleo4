@@ -1,0 +1,29 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { AdminAccountsView } from "@/components/auth/AdminAccountsView";
+import { getDictionary } from "@/i18n/dictionaries";
+import { isLocale } from "@/i18n/config";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+  const dictionary = await getDictionary(locale);
+  return {
+    title: dictionary.auth.adminAccountsMetaTitle,
+    robots: { index: false, follow: false },
+  };
+}
+
+export default async function AdminAccountsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+  return <AdminAccountsView />;
+}

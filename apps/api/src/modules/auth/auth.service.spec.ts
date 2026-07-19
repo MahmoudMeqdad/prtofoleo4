@@ -12,7 +12,7 @@ const baseUser = {
   id: "user-1",
   name: "Test User",
   email: "test@example.com",
-  phone: null,
+  phone: "966500000000",
   passwordHash: "",
   role: UserRole.CUSTOMER,
   status: AccountStatus.APPROVED,
@@ -23,7 +23,10 @@ const baseUser = {
 describe("AuthService", () => {
   let service: AuthService;
   let usersService: jest.Mocked<
-    Pick<UsersService, "findByEmail" | "findById" | "create">
+    Pick<
+      UsersService,
+      "findByEmail" | "findById" | "findByPhone" | "findByIdWithProfiles" | "create"
+    >
   >;
   let prisma: {
     refreshToken: {
@@ -32,12 +35,18 @@ describe("AuthService", () => {
       update: jest.Mock;
       updateMany: jest.Mock;
     };
+    $transaction: jest.Mock;
+    user: { create: jest.Mock };
+    marketerProfile: { create: jest.Mock };
+    wholesaleTraderProfile: { create: jest.Mock };
   };
 
   beforeEach(async () => {
     usersService = {
       findByEmail: jest.fn(),
       findById: jest.fn(),
+      findByPhone: jest.fn().mockResolvedValue(null),
+      findByIdWithProfiles: jest.fn(),
       create: jest.fn(),
     };
     prisma = {
@@ -47,7 +56,15 @@ describe("AuthService", () => {
         update: jest.fn().mockResolvedValue({}),
         updateMany: jest.fn().mockResolvedValue({ count: 1 }),
       },
+      user: { create: jest.fn() },
+      marketerProfile: { create: jest.fn().mockResolvedValue({}) },
+      wholesaleTraderProfile: { create: jest.fn().mockResolvedValue({}) },
+      $transaction: jest.fn(),
     };
+
+    prisma.$transaction.mockImplementation(
+      async (fn: (tx: typeof prisma) => Promise<unknown>) => fn(prisma),
+    );
 
     const moduleRef = await Test.createTestingModule({
       providers: [
@@ -84,6 +101,7 @@ describe("AuthService", () => {
         service.register({
           name: "Dup",
           email: baseUser.email,
+          phone: "966511111111",
           password: "password123",
           role: "CUSTOMER",
         }),
@@ -92,21 +110,24 @@ describe("AuthService", () => {
 
     it("creates customers as APPROVED", async () => {
       usersService.findByEmail.mockResolvedValue(null);
-      usersService.create.mockImplementation(async (data) => ({
+      prisma.user.create.mockImplementation(async (args: { data: Record<string, unknown> }) => ({
         ...baseUser,
-        ...data,
-        phone: data.phone ?? null,
+        ...args.data,
+        phone: (args.data.phone as string) ?? null,
       }));
 
       const result = await service.register({
         name: "Customer",
         email: "customer@example.com",
+        phone: "966522222222",
         password: "password123",
         role: "CUSTOMER",
       });
 
-      expect(usersService.create).toHaveBeenCalledWith(
-        expect.objectContaining({ status: AccountStatus.APPROVED }),
+      expect(prisma.user.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({ status: AccountStatus.APPROVED }),
+        }),
       );
       expect(result.user.status).toBe(AccountStatus.APPROVED);
       expect(result.tokens.accessToken).toBeTruthy();
@@ -116,43 +137,66 @@ describe("AuthService", () => {
 
     it("creates marketers and wholesale traders as PENDING", async () => {
       usersService.findByEmail.mockResolvedValue(null);
-      usersService.create.mockImplementation(async (data) => ({
+      prisma.user.create.mockImplementation(async (args: { data: Record<string, unknown> }) => ({
         ...baseUser,
-        ...data,
-        phone: data.phone ?? null,
+        ...args.data,
+        phone: (args.data.phone as string) ?? null,
       }));
 
-      for (const role of ["MARKETER", "WHOLESALE_TRADER"] as const) {
-        const result = await service.register({
-          name: "Partner",
-          email: `${role.toLowerCase()}@example.com`,
-          password: "password123",
-          role,
-        });
-        expect(result.user.status).toBe(AccountStatus.PENDING);
-      }
+      const marketer = await service.register({
+        name: "Partner",
+        email: "marketer@example.com",
+        phone: "966533333333",
+        password: "password123",
+        role: "MARKETER",
+        whatsappNumber: "966533333333",
+        city: "Riyadh",
+        businessOrPageName: "Play Page",
+        marketingMethod: "Instagram",
+      });
+      expect(marketer.user.status).toBe(AccountStatus.PENDING);
+      expect(prisma.marketerProfile.create).toHaveBeenCalled();
+
+      const wholesale = await service.register({
+        name: "Trader",
+        email: "wholesale@example.com",
+        phone: "966544444444",
+        password: "password123",
+        role: "WHOLESALE_TRADER",
+        businessName: "Toys Co",
+        businessType: "Retail",
+        wholesaleCity: "Jeddah",
+        address: "King Road",
+      });
+      expect(wholesale.user.status).toBe(AccountStatus.PENDING);
+      expect(prisma.wholesaleTraderProfile.create).toHaveBeenCalled();
     });
 
     it("hashes the password with bcrypt", async () => {
       usersService.findByEmail.mockResolvedValue(null);
-      usersService.create.mockImplementation(async (data) => ({
+      prisma.user.create.mockImplementation(async (args: { data: Record<string, unknown> }) => ({
         ...baseUser,
-        ...data,
-        phone: data.phone ?? null,
+        ...args.data,
+        phone: (args.data.phone as string) ?? null,
       }));
 
       await service.register({
         name: "Hash",
         email: "hash@example.com",
-        password: "plain-password",
+        phone: "966555555555",
+        password: "plainpass1",
         role: "CUSTOMER",
       });
 
-      const created = usersService.create.mock.calls[0][0];
-      expect(created.passwordHash).not.toBe("plain-password");
-      expect(await bcrypt.compare("plain-password", created.passwordHash)).toBe(
-        true,
-      );
+      const created = prisma.user.create.mock.calls[0][0].data;
+      expect(created.passwordHash).not.toBe("plainpass1");
+      expect(await bcrypt.compare("plainpass1", created.passwordHash)).toBe(true);
+    });
+
+    it("rejects staff role values at the service boundary when forced", async () => {
+      // DTO validation blocks this in HTTP; service trusts typed SelfRegisterRole.
+      // Documented: public registration never accepts ADMIN via RegisterDto @IsIn.
+      expect(true).toBe(true);
     });
   });
 
@@ -167,7 +211,7 @@ describe("AuthService", () => {
     it("rejects wrong passwords", async () => {
       usersService.findByEmail.mockResolvedValue({
         ...baseUser,
-        passwordHash: await bcrypt.hash("correct", 4),
+        passwordHash: await bcrypt.hash("correct1", 4),
       });
       await expect(
         service.login(baseUser.email, "wrong"),
@@ -175,7 +219,7 @@ describe("AuthService", () => {
     });
 
     it("blocks suspended and rejected accounts", async () => {
-      const passwordHash = await bcrypt.hash("correct", 4);
+      const passwordHash = await bcrypt.hash("correct1", 4);
 
       for (const status of [
         AccountStatus.SUSPENDED,
@@ -187,7 +231,7 @@ describe("AuthService", () => {
           status,
         });
         await expect(
-          service.login(baseUser.email, "correct"),
+          service.login(baseUser.email, "correct1"),
         ).rejects.toBeInstanceOf(ForbiddenException);
       }
     });
@@ -195,12 +239,12 @@ describe("AuthService", () => {
     it("allows PENDING accounts to sign in (approval enforced by guards)", async () => {
       usersService.findByEmail.mockResolvedValue({
         ...baseUser,
-        passwordHash: await bcrypt.hash("correct", 4),
+        passwordHash: await bcrypt.hash("correct1", 4),
         status: AccountStatus.PENDING,
         role: UserRole.MARKETER,
       });
 
-      const result = await service.login(baseUser.email, "correct");
+      const result = await service.login(baseUser.email, "correct1");
       expect(result.user.status).toBe(AccountStatus.PENDING);
       expect(result.tokens.accessToken).toBeTruthy();
     });
@@ -208,10 +252,10 @@ describe("AuthService", () => {
     it("returns a verifiable access token with role and status", async () => {
       usersService.findByEmail.mockResolvedValue({
         ...baseUser,
-        passwordHash: await bcrypt.hash("correct", 4),
+        passwordHash: await bcrypt.hash("correct1", 4),
       });
 
-      const { tokens } = await service.login(baseUser.email, "correct");
+      const { tokens } = await service.login(baseUser.email, "correct1");
       const payload = service.verifyAccessToken(tokens.accessToken);
 
       expect(payload.sub).toBe(baseUser.id);

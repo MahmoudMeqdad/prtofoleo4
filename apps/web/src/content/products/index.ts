@@ -103,6 +103,14 @@ export function getRelatedProducts(product: VelvetProduct) {
   ).slice(0, 4);
 }
 
+/** Recommendations for the cart page, excluding products already in the cart. */
+export function getCartRecommendations(excludeProductIds: string[], limit = 4) {
+  const excluded = new Set(excludeProductIds);
+  const featured = PRODUCTS.filter((item) => item.isFeatured && !excluded.has(item.id));
+  const rest = PRODUCTS.filter((item) => !excluded.has(item.id) && !item.isFeatured);
+  return [...featured, ...rest].slice(0, limit);
+}
+
 export function searchProducts(query: string, locale: Locale) {
   const normalized = query.trim().toLocaleLowerCase(locale);
   if (!normalized) return [];

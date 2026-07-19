@@ -6,11 +6,16 @@ import {
 } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService, type JwtSignOptions } from "@nestjs/jwt";
-import { AccountStatus, User, UserRole } from "@prisma/client";
+import { AccountStatus, Prisma, User, UserRole } from "@prisma/client";
 import * as bcrypt from "bcryptjs";
 import { createHash, randomBytes } from "node:crypto";
 import { PrismaService } from "../../database/prisma.service";
-import { SafeUser, toSafeUser, UsersService } from "../users/users.service";
+import {
+  SafeUser,
+  toSafeUser,
+  UsersService,
+  type UserWithProfiles,
+} from "../users/users.service";
 import type { AccessTokenPayload, AuthTokens } from "./auth.types";
 import type { RegisterDto } from "./dto/register.dto";
 
@@ -54,37 +59,111 @@ export class AuthService {
   ): Promise<{ user: SafeUser; tokens: AuthTokens }> {
     const existing = await this.users.findByEmail(dto.email);
     if (existing) {
-      throw new ConflictException("An account with this email already exists");
+      throw new ConflictException({
+        code: "EMAIL_EXISTS",
+        message: "An account with this email already exists",
+      });
+    }
+
+    if (dto.phone) {
+      const phoneTaken = await this.users.findByPhone(dto.phone);
+      if (phoneTaken) {
+        throw new ConflictException({
+          code: "PHONE_EXISTS",
+          message: "An account with this phone already exists",
+        });
+      }
     }
 
     const passwordHash = await bcrypt.hash(dto.password, BCRYPT_ROUNDS);
     const role = dto.role as UserRole;
 
-    const user = await this.users.create({
-      name: dto.name,
-      email: dto.email,
-      phone: dto.phone,
-      passwordHash,
-      role,
-      status: initialStatusFor(role),
-    });
+    try {
+      const user = await this.prisma.$transaction(async (tx) => {
+        const created = await tx.user.create({
+          data: {
+            name: dto.name,
+            email: dto.email.toLowerCase().trim(),
+            phone: dto.phone,
+            passwordHash,
+            role,
+            status: initialStatusFor(role),
+          },
+        });
 
-    const tokens = await this.issueTokens(user);
-    return { user: toSafeUser(user), tokens };
+        if (role === UserRole.MARKETER) {
+          await tx.marketerProfile.create({
+            data: {
+              userId: created.id,
+              whatsappNumber: dto.whatsappNumber!,
+              city: dto.city!,
+              businessOrPageName: dto.businessOrPageName!,
+              facebookPage: dto.facebookPage || null,
+              instagramPage: dto.instagramPage || null,
+              marketingMethod: dto.marketingMethod!,
+            },
+          });
+        }
+
+        if (role === UserRole.WHOLESALE_TRADER) {
+          await tx.wholesaleTraderProfile.create({
+            data: {
+              userId: created.id,
+              businessName: dto.businessName!,
+              businessType: dto.businessType!,
+              city: dto.wholesaleCity ?? dto.city!,
+              address: dto.address!,
+              expectedOrderVolume: dto.expectedOrderVolume || null,
+            },
+          });
+        }
+
+        return created;
+      });
+
+      const tokens = await this.issueTokens(user);
+      return { user: toSafeUser(user), tokens };
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2002"
+      ) {
+        const target = Array.isArray(error.meta?.target)
+          ? (error.meta?.target as string[]).join(",")
+          : String(error.meta?.target ?? "");
+        if (target.includes("phone")) {
+          throw new ConflictException({
+            code: "PHONE_EXISTS",
+            message: "An account with this phone already exists",
+          });
+        }
+        throw new ConflictException({
+          code: "EMAIL_EXISTS",
+          message: "An account with this email already exists",
+        });
+      }
+      throw error;
+    }
   }
 
   async login(
     email: string,
     password: string,
   ): Promise<{ user: SafeUser; tokens: AuthTokens }> {
-    const user = await this.users.findByEmail(email);
+    const user = await this.users.findByEmail(email.toLowerCase().trim());
     if (!user) {
-      throw new UnauthorizedException("Invalid email or password");
+      throw new UnauthorizedException({
+        code: "INVALID_CREDENTIALS",
+        message: "Invalid email or password",
+      });
     }
 
     const valid = await bcrypt.compare(password, user.passwordHash);
     if (!valid) {
-      throw new UnauthorizedException("Invalid email or password");
+      throw new UnauthorizedException({
+        code: "INVALID_CREDENTIALS",
+        message: "Invalid email or password",
+      });
     }
 
     this.assertLoginAllowed(user.status);
@@ -101,7 +180,10 @@ export class AuthService {
     });
 
     if (!stored || stored.revokedAt || stored.expiresAt < new Date()) {
-      throw new UnauthorizedException("Refresh token is invalid or expired");
+      throw new UnauthorizedException({
+        code: "UNAUTHORIZED",
+        message: "Refresh token is invalid or expired",
+      });
     }
 
     this.assertLoginAllowed(stored.user.status);
@@ -124,9 +206,12 @@ export class AuthService {
   }
 
   async getProfile(userId: string): Promise<SafeUser> {
-    const user = await this.users.findById(userId);
+    const user = await this.users.findByIdWithProfiles(userId);
     if (!user) {
-      throw new UnauthorizedException("Account no longer exists");
+      throw new UnauthorizedException({
+        code: "UNAUTHORIZED",
+        message: "Account no longer exists",
+      });
     }
     return toSafeUser(user);
   }
@@ -137,16 +222,25 @@ export class AuthService {
         secret: this.config.getOrThrow<string>("JWT_ACCESS_SECRET"),
       });
     } catch {
-      throw new UnauthorizedException("Access token is invalid or expired");
+      throw new UnauthorizedException({
+        code: "UNAUTHORIZED",
+        message: "Access token is invalid or expired",
+      });
     }
   }
 
   private assertLoginAllowed(status: AccountStatus): void {
     if (status === AccountStatus.SUSPENDED) {
-      throw new ForbiddenException("This account has been suspended");
+      throw new ForbiddenException({
+        code: "ACCOUNT_SUSPENDED",
+        message: "This account has been suspended",
+      });
     }
     if (status === AccountStatus.REJECTED) {
-      throw new ForbiddenException("This account request was rejected");
+      throw new ForbiddenException({
+        code: "ACCOUNT_REJECTED",
+        message: "This account request was rejected",
+      });
     }
     // PENDING accounts may sign in to check their approval status;
     // role/approval guards protect privileged operations.
@@ -182,3 +276,5 @@ export class AuthService {
     return { accessToken, refreshToken };
   }
 }
+
+export type { UserWithProfiles };

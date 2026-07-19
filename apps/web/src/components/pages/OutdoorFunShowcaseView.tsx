@@ -28,6 +28,7 @@ export function CollectionProductShowcaseView({
   const [activeIndex, setActiveIndex] = useState(0);
   const showcaseRef = useRef<HTMLElement>(null);
   const productRailRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const touchStart = useRef<number | null>(null);
   const overviewProduct: CollectionStorySection = {
     id: `${collection.id}-overview`,
@@ -77,24 +78,23 @@ export function CollectionProductShowcaseView({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [move]);
 
+  useEffect(() => {
+    const rail = productRailRef.current;
+    const card = cardRefs.current[activeIndex];
+    if (!rail || !card) return;
+
+    const targetLeft = card.offsetLeft - (rail.clientWidth - card.clientWidth) / 2;
+    const maxScroll = Math.max(0, rail.scrollWidth - rail.clientWidth);
+
+    rail.scrollTo({
+      left: Math.min(Math.max(0, targetLeft), maxScroll),
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
+  }, [activeIndex, reducedMotion, products.length]);
+
   const transition = reducedMotion
     ? { duration: 0 }
     : { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
-
-  const scrollProductRail = (direction: -1 | 1) => {
-    const rail = productRailRef.current;
-    if (!rail) return;
-    const maximum = rail.scrollWidth - rail.clientWidth;
-    let nextPosition = rail.scrollLeft + direction * rail.clientWidth;
-
-    if (nextPosition > maximum - 2) nextPosition = 0;
-    if (nextPosition < 0) nextPosition = maximum;
-
-    rail.scrollTo({
-      left: nextPosition,
-      behavior: reducedMotion ? "auto" : "smooth",
-    });
-  };
 
   return (
     <PublicPageShell>
@@ -103,7 +103,7 @@ export function CollectionProductShowcaseView({
         style={
           {
             "--card-image-scale": cardImageScale,
-            "--card-columns": Math.min(products.length, 4),
+            "--card-columns": 2,
           } as CSSProperties
         }
       >
@@ -172,7 +172,7 @@ export function CollectionProductShowcaseView({
                   src={active.media.desktop}
                   alt={t(active.media.alt, locale)}
                   fill
-                  sizes="(max-width: 768px) 82vw, 560px"
+                  sizes="(max-width: 768px) 86vw, 720px"
                   className={styles.productImage}
                 />
               </div>
@@ -220,55 +220,40 @@ export function CollectionProductShowcaseView({
               Explore {collectionName}
             </h2>
           )}
-          <div className={styles.railShell}>
-            {products.length > 4 && (
+          <div
+            ref={productRailRef}
+            className={styles.productRail}
+            role="list"
+            aria-label={`${collectionName} product list`}
+          >
+            {products.map((product, index) => (
               <button
                 type="button"
-                className={`${styles.railButton} ${styles.railPrevious}`}
-                onClick={() => scrollProductRail(-1)}
-                aria-label={`Previous ${collectionName} cards`}
+                key={product.id}
+                ref={(element) => {
+                  cardRefs.current[index] = element;
+                }}
+                className={styles.card}
+                aria-current={index === activeIndex ? "true" : undefined}
+                onClick={() => {
+                  selectProduct(index);
+                  showcaseRef.current?.scrollIntoView({
+                    behavior: reducedMotion ? "auto" : "smooth",
+                    block: "center",
+                  });
+                }}
               >
-                <ArrowLeft aria-hidden="true" />
+                <span className={styles.cardImage}>
+                  <Image
+                    src={product.media.desktop}
+                    alt={t(product.media.alt, locale)}
+                    fill
+                    sizes="256px"
+                    className={styles.productImage}
+                  />
+                </span>
               </button>
-            )}
-            <div ref={productRailRef} className={styles.productRail}>
-              {products.map((product, index) => (
-                <button
-                  type="button"
-                  key={product.id}
-                  className={styles.card}
-                  aria-current={index === activeIndex ? "true" : undefined}
-                  onClick={() => {
-                    selectProduct(index);
-                    showcaseRef.current?.scrollIntoView({
-                      behavior: reducedMotion ? "auto" : "smooth",
-                      block: "center",
-                    });
-                  }}
-                >
-                  <span className={styles.cardImage}>
-                    <Image
-                      src={product.media.desktop}
-                      alt={t(product.media.alt, locale)}
-                      fill
-                      sizes="(max-width: 768px) 62vw, 20vw"
-                      className={styles.productImage}
-                    />
-                  </span>
-                  <span className={styles.cardLabel}>{t(product.title, locale)}</span>
-                </button>
-              ))}
-            </div>
-            {products.length > 4 && (
-              <button
-                type="button"
-                className={`${styles.railButton} ${styles.railNext}`}
-                onClick={() => scrollProductRail(1)}
-                aria-label={`Next ${collectionName} cards`}
-              >
-                <ArrowRight aria-hidden="true" />
-              </button>
-            )}
+            ))}
           </div>
         </section>
       </div>

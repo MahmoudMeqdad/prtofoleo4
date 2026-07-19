@@ -5,29 +5,31 @@
 - **Framework:** Next.js 16 with App Router
 - **Language:** TypeScript (strict mode)
 - **Styling:** Tailwind CSS v4
-- **State Management:** Zustand (prepared for shopping cart)
-- **Server State:** TanStack Query (for backend data fetching)
+- **State Management:** Zustand (shopping cart); AuthProvider for session
+- **Server State:** TanStack Query (prepared)
 - **Forms:** React Hook Form + Zod validation
 - **Animation:** Framer Motion (prepared for future use)
 - **Icons:** Lucide React
+- **Auth proxy:** `/api/backend/*` → NestJS API (`BACKEND_API_URL`)
 
 ### Route Structure
 
 ```
-/              Home — Hero + collection showcase (Day 2)
-/design-system Internal design system review
-/collections   Collection listing
-/collections/[slug]  Single collection
-/products      Product listing
-/products/[slug]     Single product
-/cart          Shopping cart
-/dropshipping  Dropshipping information
-/wholesale     Wholesale information
-/login         Login page
-/register      Registration page
-/about         About page
-/contact       Contact page
-/admin/*       Admin dashboard
+/[locale]                 Home — Hero + collection showcase
+/[locale]/collections     Brand listing
+/[locale]/collections/[slug]
+/[locale]/products/[slug]
+/[locale]/cart            Shopping cart + WhatsApp order
+/[locale]/login           Sign in
+/[locale]/register        Public registration
+/[locale]/account         Approved account profile
+/[locale]/account/pending Partner pending status
+/[locale]/account/rejected
+/[locale]/account/suspended
+/[locale]/admin/accounts  Minimal account review (ADMIN / SUPER_ADMIN)
+/[locale]/about
+/[locale]/contact
+/design-system            Internal design system review
 ```
 
 ### Component Architecture
@@ -35,12 +37,11 @@
 - `components/ui/` — Reusable design-system components
 - `components/layout/` — Layout components (Header, Footer, MobileMenu)
 - `components/home/` — Home page sections
+- `components/auth/` — Login, register, account, admin review
 - `components/collections/` — Collection-related components
 - `components/products/` — Product-related components
 - `components/cart/` — Cart-related components
-- `components/marketer/` — Marketer dashboard components
-- `components/wholesale/` — Wholesale dashboard components
-- `components/admin/` — Admin dashboard components
+- `auth/` — AuthProvider, auth client, guards, error mapping
 
 ## Backend Architecture
 
@@ -49,17 +50,18 @@
 - **API Style:** REST
 - **ORM:** Prisma
 - **Database:** PostgreSQL
-- **Validation:** Class Validator + Zod
-- **Security:** Helmet, CORS
-- **Documentation:** Swagger
+- **Validation:** Class Validator + Zod env validation
+- **Security:** Helmet, CORS allowlist, throttling, HttpOnly refresh cookies
+- **Documentation:** Swagger (non-production only)
 
 ### Module Structure
 
 ```
 modules/
-├── health/        # Health check endpoints (Day 1)
-├── auth/          # Authentication (future)
-├── users/         # User management (future)
+├── health/        # Health check endpoints
+├── auth/          # Registration, login, refresh, logout, /me
+├── users/         # User + partner profile helpers
+├── admin/         # Account listing and status updates
 ├── products/      # Product management (future)
 ├── collections/   # Collection management (future)
 ├── orders/        # Order management (future)
@@ -73,9 +75,18 @@ modules/
 ### API Endpoints
 
 ```
-GET  /api/health              Service health check
-GET  /api/health/database     Database connection check
+GET  /api/health
+GET  /api/health/database
+POST /api/auth/register
+POST /api/auth/login
+POST /api/auth/refresh
+POST /api/auth/logout
+GET  /api/auth/me
+GET  /api/admin/users
+PATCH /api/admin/users/:id/status
 ```
+
+Public brand name: **Velvet Kids**. Internal monorepo name remains `iplay`.
 
 ### API Convention
 

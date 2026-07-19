@@ -122,6 +122,8 @@ model ProductCost {
 
 ## MarketerProfile
 
+> **Day 6:** A minimal registration profile is live in Prisma (`whatsappNumber`, `city`, `businessOrPageName`, optional social links, `marketingMethod`). Commission / referral / wallet fields below remain future work.
+
 ```prisma
 model MarketerProfile {
   id             String   @id @default(cuid())
@@ -140,6 +142,8 @@ model MarketerProfile {
 
 ## WholesaleTraderProfile
 
+> **Day 6:** A minimal registration profile is live (`businessName`, `businessType`, `city`, `address`, optional `expectedOrderVolume`). Credit limits and balances below remain future work.
+
 ```prisma
 model WholesaleTraderProfile {
   id              String       @id @default(cuid())
@@ -153,6 +157,22 @@ model WholesaleTraderProfile {
   updatedAt       DateTime     @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+```
+
+## AccountStatusHistory (Day 6)
+
+Dedicated account-review audit (not a full platform audit module):
+
+```prisma
+model AccountStatusHistory {
+  id             String        @id @default(cuid())
+  userId         String
+  reviewerId     String
+  previousStatus AccountStatus
+  newStatus      AccountStatus
+  note           String?
+  createdAt      DateTime      @default(now())
 }
 ```
 

@@ -1,4 +1,8 @@
-import { ForbiddenException, NotFoundException } from "@nestjs/common";
+import {
+  BadRequestException,
+  ForbiddenException,
+  NotFoundException,
+} from "@nestjs/common";
 import { AccountStatus, UserRole } from "@prisma/client";
 import type { AuthenticatedUser } from "../auth/auth.types";
 import { UsersService } from "../users/users.service";
@@ -18,7 +22,11 @@ const superAdmin: AuthenticatedUser = {
   status: AccountStatus.APPROVED,
 };
 
-function targetUser(id: string, role: UserRole) {
+function targetUser(
+  id: string,
+  role: UserRole,
+  status: AccountStatus = AccountStatus.PENDING,
+) {
   return {
     id,
     name: "Target",
@@ -26,7 +34,7 @@ function targetUser(id: string, role: UserRole) {
     phone: null,
     passwordHash: "hash",
     role,
-    status: AccountStatus.PENDING,
+    status,
     createdAt: new Date(),
     updatedAt: new Date(),
   };
@@ -34,7 +42,10 @@ function targetUser(id: string, role: UserRole) {
 
 describe("AdminUsersController", () => {
   let usersService: jest.Mocked<
-    Pick<UsersService, "findById" | "updateStatus" | "list">
+    Pick<
+      UsersService,
+      "findById" | "updateStatus" | "list" | "isTransitionAllowed"
+    >
   >;
   let controller: AdminUsersController;
 
@@ -43,6 +54,7 @@ describe("AdminUsersController", () => {
       findById: jest.fn(),
       updateStatus: jest.fn(),
       list: jest.fn(),
+      isTransitionAllowed: jest.fn().mockReturnValue(true),
     };
     controller = new AdminUsersController(
       usersService as unknown as UsersService,
@@ -67,8 +79,79 @@ describe("AdminUsersController", () => {
     expect(usersService.updateStatus).toHaveBeenCalledWith(
       "m-1",
       AccountStatus.APPROVED,
+      admin.id,
+      undefined,
     );
     expect(result.status).toBe(AccountStatus.APPROVED);
+  });
+
+  it("rejects a pending marketer", async () => {
+    usersService.findById.mockResolvedValue(
+      targetUser("m-2", UserRole.MARKETER),
+    );
+    usersService.updateStatus.mockResolvedValue({
+      ...targetUser("m-2", UserRole.MARKETER),
+      status: AccountStatus.REJECTED,
+    });
+
+    const result = await controller.updateStatus(
+      "m-2",
+      { status: "REJECTED", note: "Incomplete profile" },
+      admin,
+    );
+    expect(result.status).toBe(AccountStatus.REJECTED);
+    expect(usersService.updateStatus).toHaveBeenCalledWith(
+      "m-2",
+      AccountStatus.REJECTED,
+      admin.id,
+      "Incomplete profile",
+    );
+  });
+
+  it("suspends an approved account", async () => {
+    usersService.findById.mockResolvedValue(
+      targetUser("m-3", UserRole.MARKETER, AccountStatus.APPROVED),
+    );
+    usersService.updateStatus.mockResolvedValue({
+      ...targetUser("m-3", UserRole.MARKETER),
+      status: AccountStatus.SUSPENDED,
+    });
+
+    const result = await controller.updateStatus(
+      "m-3",
+      { status: "SUSPENDED" },
+      admin,
+    );
+    expect(result.status).toBe(AccountStatus.SUSPENDED);
+  });
+
+  it("reactivates a suspended account", async () => {
+    usersService.findById.mockResolvedValue(
+      targetUser("m-4", UserRole.MARKETER, AccountStatus.SUSPENDED),
+    );
+    usersService.isTransitionAllowed.mockReturnValue(true);
+    usersService.updateStatus.mockResolvedValue({
+      ...targetUser("m-4", UserRole.MARKETER),
+      status: AccountStatus.APPROVED,
+    });
+
+    const result = await controller.updateStatus(
+      "m-4",
+      { status: "APPROVED" },
+      admin,
+    );
+    expect(result.status).toBe(AccountStatus.APPROVED);
+  });
+
+  it("blocks invalid status transitions", async () => {
+    usersService.findById.mockResolvedValue(
+      targetUser("m-5", UserRole.MARKETER, AccountStatus.REJECTED),
+    );
+    usersService.isTransitionAllowed.mockReturnValue(false);
+
+    await expect(
+      controller.updateStatus("m-5", { status: "APPROVED" }, admin),
+    ).rejects.toBeInstanceOf(BadRequestException);
   });
 
   it("blocks self status changes", async () => {
@@ -95,7 +178,7 @@ describe("AdminUsersController", () => {
 
   it("lets super admins modify admin accounts", async () => {
     usersService.findById.mockResolvedValue(
-      targetUser("admin-2", UserRole.ADMIN),
+      targetUser("admin-2", UserRole.ADMIN, AccountStatus.APPROVED),
     );
     usersService.updateStatus.mockResolvedValue({
       ...targetUser("admin-2", UserRole.ADMIN),

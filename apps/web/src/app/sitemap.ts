@@ -4,7 +4,15 @@ import { locales } from "@/i18n/config";
 import { getSiteUrl } from "@/lib/metadata";
 import { getProductSlugs } from "@/content/products";
 
-const STATIC_PATHS = ["", "/collections", "/about", "/contact", "/careers"];
+const STATIC_PATHS = [
+  "",
+  "/collections",
+  "/about",
+  "/contact",
+  "/careers",
+  "/login",
+  "/register",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();

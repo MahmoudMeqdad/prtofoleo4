@@ -35,18 +35,66 @@ model User {
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
 
-  refreshTokens RefreshToken[]
+  refreshTokens         RefreshToken[]
+  marketerProfile       MarketerProfile?
+  wholesaleTraderProfile WholesaleTraderProfile?
+  statusHistoryAsTarget AccountStatusHistory[] @relation("StatusHistoryTarget")
+  statusHistoryAsReviewer AccountStatusHistory[] @relation("StatusHistoryReviewer")
 }
 
 model RefreshToken {
-  id        String   @id @default(cuid())
-  tokenHash String   @unique
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
   userId    String
   expiresAt DateTime
   revokedAt DateTime?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+model MarketerProfile {
+  userId              String @id
+  whatsappNumber      String
+  city                String
+  businessOrPageName  String
+  facebookPage        String?
+  instagramPage       String?
+  marketingMethod     String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model WholesaleTraderProfile {
+  userId              String  @id
+  businessName        String
+  businessType        String
+  city                String
+  address             String
+  expectedOrderVolume String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AccountStatusHistory {
+  id             String        @id @default(cuid())
+  userId         String
+  reviewerId     String
+  previousStatus AccountStatus
+  newStatus      AccountStatus
+  note           String?
+  createdAt      DateTime      @default(now())
+
+  user     User @relation("StatusHistoryTarget", fields: [userId], references: [id], onDelete: Cascade)
+  reviewer User @relation("StatusHistoryReviewer", fields: [reviewerId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([reviewerId])
+  @@index([createdAt])
 }

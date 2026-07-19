@@ -17,6 +17,9 @@ const envSchema = z.object({
   JWT_REFRESH_SECRET: z.string().min(1, "JWT_REFRESH_SECRET is required"),
   JWT_ACCESS_EXPIRES_IN: z.string().default("15m"),
   JWT_REFRESH_EXPIRES_IN: z.string().default("30d"),
+  COOKIE_SECURE: z.string().optional(),
+  COOKIE_SAME_SITE: z.enum(["lax", "strict", "none"]).optional(),
+  COOKIE_DOMAIN: z.string().optional(),
   // Future media integration (optional until Cloudinary is implemented)
   CLOUDINARY_CLOUD_NAME: z.string().optional(),
   CLOUDINARY_API_KEY: z.string().optional(),

@@ -207,11 +207,45 @@
   padding-inline: 1rem;
   font-size: 0.875rem;
   font-weight: 400;
+  cursor: text;
   transition:
     background-color 200ms ease,
     border-color 0.2s ease,
     color 180ms ease,
     opacity 180ms ease;
+}
+
+.homepage-search-pill__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  outline: none;
+  box-shadow: none;
+}
+
+.homepage-search-pill__input:focus,
+.homepage-search-pill__input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.homepage-search-pill:focus-within {
+  outline: none;
+  box-shadow: none;
+}
+
+.homepage-search-pill__input::placeholder {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.homepage-search-pill__input::-webkit-search-decoration,
+.homepage-search-pill__input::-webkit-search-cancel-button {
+  appearance: none;
 }
 
 @media (min-width: 640px) {
@@ -228,7 +262,7 @@
 }
 
 .homepage-header[data-header-mode="top-over-hero"] .homepage-search-pill:hover,
-.homepage-header[data-header-mode="top-over-hero"] .homepage-search-pill:focus-visible {
+.homepage-header[data-header-mode="top-over-hero"] .homepage-search-pill:focus-within {
   background: var(--search-overlay-hover);
 }
 
@@ -239,7 +273,7 @@
 }
 
 .homepage-header[data-header-mode="visible-white"] .homepage-search-pill:hover,
-.homepage-header[data-header-mode="visible-white"] .homepage-search-pill:focus-visible {
+.homepage-header[data-header-mode="visible-white"] .homepage-search-pill:focus-within {
   border-color: rgba(23, 32, 51, 0.25);
   background: #ffffff;
 }

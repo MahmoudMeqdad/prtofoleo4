@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
 import { PublicPageShell } from "@/components/layout/PublicPageShell";
+import { Toast } from "@/components/ui/Toast";
 import { ProductGallery } from "./ProductGallery";
 import { QuantitySelector } from "./QuantitySelector";
 import { getRelatedProducts, type VelvetProduct } from "@/content/products";
 import { getCollection } from "@/content/collections";
 import { localizedPath, type Locale } from "@/i18n/config";
 import { formatCurrency } from "@/lib/currency";
+import { useDictionary } from "@/providers/LocaleProvider";
 import { createCartItemKey, type CartSelectedOption } from "@/store/cart-types";
 import { useCartStore } from "@/store/cart-store";
 
@@ -30,12 +32,13 @@ const availability = {
 };
 
 export function ProductDetailView({ product, locale }: { product: VelvetProduct; locale: Locale }) {
+  const dictionary = useDictionary();
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState<Record<string, string>>({});
   const [error, setError] = useState("");
-  const [announcement, setAnnouncement] = useState("");
+  const [toastVisible, setToastVisible] = useState(false);
   const addItem = useCartStore((state) => state.addItem);
-  const setDrawerOpen = useCartStore((state) => state.setDrawerOpen);
+  const dismissToast = useCallback(() => setToastVisible(false), []);
   const collection = getCollection(product.collectionSlug);
   const related = getRelatedProducts(product);
   const orderable =
@@ -59,9 +62,8 @@ export function ProductDetailView({ product, locale }: { product: VelvetProduct;
       selectedOptions,
     });
     setError("");
-    setAnnouncement(locale === "ar" ? "تمت الإضافة إلى السلة" : "Added to cart");
+    setToastVisible(true);
     if (goToCart) window.location.href = localizedPath(locale, "/cart");
-    else setDrawerOpen(true);
   };
   return (
     <PublicPageShell>
@@ -123,7 +125,7 @@ export function ProductDetailView({ product, locale }: { product: VelvetProduct;
                 className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full bg-black px-7 font-bold text-white disabled:opacity-40"
               >
                 <ShoppingBag className="h-5 w-5" />
-                {locale === "ar" ? "أضف إلى السلة" : "Add to Cart"}
+                {dictionary.cart.addToCart}
               </button>
             </div>
             <button
@@ -132,18 +134,18 @@ export function ProductDetailView({ product, locale }: { product: VelvetProduct;
               onClick={() => add(true)}
               className="mt-3 min-h-12 rounded-full border-2 border-black px-7 font-bold disabled:opacity-40"
             >
-              {locale === "ar" ? "اطلب عبر واتساب" : "Order on WhatsApp"}
+              {dictionary.cart.orderWhatsApp}
             </button>
             <p className="mt-5 text-sm leading-6 text-neutral-600">
-              {locale === "ar"
-                ? "سيتم تأكيد توفر المنتج ورسوم التوصيل وموعد التسليم عبر واتساب."
-                : "Product availability, delivery fees and delivery timing will be confirmed through WhatsApp."}
-            </p>
-            <p className="sr-only" aria-live="polite">
-              {announcement}
+              {dictionary.cart.deliveryNote}
             </p>
           </section>
         </div>
+        <Toast
+          message={dictionary.cart.addedToCart}
+          visible={toastVisible}
+          onDismiss={dismissToast}
+        />
         <div className="mx-auto mt-24 max-w-5xl border-t pt-16">
           <h2 className="text-4xl font-black">{locale === "ar" ? "المميزات" : "Features"}</h2>
           <ul className="mt-6 grid gap-4 md:grid-cols-2">
@@ -177,13 +179,14 @@ export function ProductDetailView({ product, locale }: { product: VelvetProduct;
                 href={localizedPath(locale, `/products/${item.slug}`)}
                 className="group bg-neutral-100 p-5"
               >
-                <span className="relative block aspect-square">
+                <span className="relative mx-auto block h-[150px] w-[365px] max-w-full overflow-hidden">
                   <Image
                     src={item.images[0].src}
                     alt={item.images[0].alt[locale]}
-                    fill
-                    className="object-contain transition-transform group-hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, 25vw"
+                    width={365}
+                    height={150}
+                    className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                    sizes="365px"
                   />
                 </span>
                 <strong className="mt-4 block text-lg">{item.name[locale]}</strong>

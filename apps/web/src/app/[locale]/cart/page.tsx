@@ -10,7 +10,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: locale === "ar" ? "السلة | Velvet Kids" : "Cart | Velvet Kids",
+    title: locale === "ar" ? "سلتك | Velvet Kids" : "Your Cart | Velvet Kids",
     robots: { index: false, follow: true },
   };
 }

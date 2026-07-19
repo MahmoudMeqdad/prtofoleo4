@@ -8,11 +8,12 @@
     "start": "next start",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test src/store/cart-types.test.ts src/lib/whatsapp-order.test.ts",
+    "test": "node --experimental-strip-types --test src/store/cart-types.test.ts src/lib/whatsapp-order.test.ts src/auth/auth-guards.test.ts src/auth/auth-forms.test.ts",
     "clean": "rm -rf .next .turbo node_modules"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.0",
+    "@iplay/shared": "^0.1.0",
     "@tanstack/react-query": "^5.100.0",
     "clsx": "^2.1.0",
     "framer-motion": "^12.0.0",

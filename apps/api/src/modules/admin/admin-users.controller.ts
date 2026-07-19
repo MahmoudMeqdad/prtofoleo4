@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   ForbiddenException,
@@ -37,30 +38,54 @@ export class AdminUsersController {
   }
 
   @Patch(":id/status")
-  @ApiOperation({ summary: "Approve, reject, or suspend an account" })
+  @ApiOperation({ summary: "Approve, reject, suspend, or reactivate an account" })
   async updateStatus(
     @Param("id") id: string,
     @Body() dto: UpdateAccountStatusDto,
     @CurrentUser() actor: AuthenticatedUser,
   ) {
     if (actor.id === id) {
-      throw new ForbiddenException("You cannot change your own status");
+      throw new ForbiddenException({
+        code: "FORBIDDEN",
+        message: "You cannot change your own status",
+      });
     }
 
     const target = await this.usersService.findById(id);
     if (!target) {
-      throw new NotFoundException("Account not found");
+      throw new NotFoundException({
+        code: "NOT_FOUND",
+        message: "Account not found",
+      });
     }
 
     // Only a super admin may act on admin-level accounts.
     const targetIsAdmin =
       target.role === UserRole.ADMIN || target.role === UserRole.SUPER_ADMIN;
     if (targetIsAdmin && actor.role !== UserRole.SUPER_ADMIN) {
-      throw new ForbiddenException(
-        "Only a super admin can modify admin accounts",
-      );
+      throw new ForbiddenException({
+        code: "FORBIDDEN",
+        message: "Only a super admin can modify admin accounts",
+      });
     }
 
-    return this.usersService.updateStatus(id, dto.status as AccountStatus);
+    if (
+      !this.usersService.isTransitionAllowed(
+        target.status,
+        dto.status as AccountStatus,
+      )
+    ) {
+      throw new BadRequestException({
+        code: "INVALID_STATUS_TRANSITION",
+        message: "Invalid account status transition",
+      });
+    }
+
+    return this.usersService.updateStatus(
+      id,
+      dto.status as AccountStatus,
+      actor.id,
+      dto.note,
+    );
   }
 }

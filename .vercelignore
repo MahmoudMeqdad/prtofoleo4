@@ -1,0 +1,19 @@
+# Avoid uploading local caches and secrets during CLI deploys from the monorepo root.
+node_modules
+apps/*/node_modules
+packages/*/node_modules
+.next
+apps/web/.next
+apps/api/dist
+.turbo
+.git
+.local
+*.log
+.env
+.env.*
+!.env.example
+apps/*/.env
+apps/*/.env.*
+!apps/*/.env.example
+artifacts
+coverage

@@ -1,9 +1,14 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString } from "class-validator";
+import { ApiPropertyOptional } from "@nestjs/swagger";
+import { IsOptional, IsString, MinLength } from "class-validator";
 
+/**
+ * Refresh token may arrive via HttpOnly cookie. The body field remains
+ * optional for non-browser clients and tests.
+ */
 export class RefreshTokenDto {
-  @ApiProperty({ description: "Opaque refresh token issued at login" })
+  @ApiPropertyOptional({ description: "Opaque refresh token (optional when cookie is set)" })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  refreshToken!: string;
+  @MinLength(1)
+  refreshToken?: string;
 }

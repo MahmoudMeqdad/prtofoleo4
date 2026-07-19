@@ -1,20 +1,24 @@
 # Vercel + GitHub Deployment Notes
 
-## Current status
+## Current production frontend
 
-- Production URL: https://iplay-web.vercel.app
-- Project: `iplay-web` (account `mmeddad2004-1027`)
-- Root Directory: `apps/web`
-- Current deployment method: **Vercel CLI** (`npx vercel --prod` from `apps/web`)
-- Automatic GitHub deploy: **not verified / not assumed configured**
+- URL: https://iplay-web.vercel.app
+- Day 6 auth routes (`/en/login`, `/en/register`, account + admin pages) are published
+- Same-origin proxy: `/api/backend/*` (requires `BACKEND_API_URL` once the Nest API is hosted)
 
-## CLI deployment (current)
+## Preferred CLI deployment (monorepo)
+
+Because `@iplay/web` depends on `@iplay/shared`, deploy from the **repository root** (not `apps/web` alone):
 
 ```bash
-cd apps/web
-npx vercel        # preview
-npx vercel --prod # production
+# repository root
+vercel deploy --prod --yes
 ```
+
+Root `vercel.json` runs `npm run build --workspace=@iplay/web`.  
+`.vercelignore` keeps uploads small (excludes `node_modules`, `.next`, secrets).
+
+Legacy `apps/web`-only CLI deploys fail `npm install` on the workspace package and should be avoided.
 
 ## Connecting GitHub (human action required)
 

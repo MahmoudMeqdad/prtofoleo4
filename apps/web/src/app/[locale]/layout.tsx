@@ -6,6 +6,7 @@ import { getDictionary } from "@/i18n/dictionaries";
 import { getLocaleDirection, isLocale, locales, type Locale } from "@/i18n/config";
 import { CartHydration } from "@/components/cart/CartHydration";
 import { CartDrawer } from "@/components/cart/CartDrawer";
+import { AuthProvider } from "@/auth/AuthProvider";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -59,9 +60,11 @@ export default async function LocaleLayout({
       <LocaleHtmlAttributes locale={locale} />
       <div lang={locale} dir={direction}>
         <LocaleProvider locale={locale} dictionary={dictionary}>
-          <CartHydration />
-          {children}
-          <CartDrawer />
+          <AuthProvider>
+            <CartHydration />
+            {children}
+            <CartDrawer />
+          </AuthProvider>
         </LocaleProvider>
       </div>
     </>

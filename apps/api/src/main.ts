@@ -1,20 +1,24 @@
 import { NestFactory } from "@nestjs/core";
 import { ValidationPipe } from "@nestjs/common";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
+import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import { AppModule } from "./app.module";
+import { ApiExceptionFilter } from "./common/filters/api-exception.filter";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.setGlobalPrefix("api");
 
+  const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
   app.enableCors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: frontendUrl,
     credentials: true,
   });
 
   app.use(helmet());
+  app.use(cookieParser());
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -24,10 +28,12 @@ async function bootstrap() {
     }),
   );
 
+  app.useGlobalFilters(new ApiExceptionFilter());
+
   if (process.env.NODE_ENV !== "production") {
     const config = new DocumentBuilder()
-      .setTitle("IPLAY API")
-      .setDescription("IPLAY Platform API Documentation")
+      .setTitle("Velvet Kids API")
+      .setDescription("Velvet Kids platform API documentation")
       .setVersion("0.1.0")
       .addBearerAuth()
       .build();
@@ -37,7 +43,8 @@ async function bootstrap() {
 
   const port = process.env.PORT || 4000;
   await app.listen(port);
-  console.log(`IPLAY API running on http://localhost:${port}/api`);
+  // Internal monorepo process name only — never shown on customer surfaces.
+  console.log(`API listening on port ${port}`);
 }
 
 bootstrap();
